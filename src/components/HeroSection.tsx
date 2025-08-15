@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useLanguage } from "@/contexts/LanguageContext";
+import heroImage from "@/assets/hero-chefchaouen.jpg";
 
 export default function HeroSection() {
-  const { t } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
   
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1615571022219-eb45cf7faa9d?q=80&w=1920&auto=format&fit=crop')",
+          backgroundImage: `url(${heroImage})`,
           transform: `translateY(${backgroundY}px)`,
           backgroundPosition: `center ${50 + scrollY * 0.05}%`
         }}
@@ -45,20 +44,20 @@ export default function HeroSection() {
       >
         <div className="max-w-3xl animate-fade-in">
           <span className="inline-block text-white/90 text-lg mb-4 tracking-wide border-b border-white/30 pb-2">
-            {t.hero.subtitle}
+            Coopérative Bio Salim
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            {t.hero.title}
+            Ensemble, nous cultivons l'avenir
           </h1>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            {t.hero.description}
+            Dans les montagnes verdoyantes de Chefchaouen, plus de 30 femmes rurales unissent leur savoir-faire pour produire des aliments sains à base de sorgho. Plus qu'une coopérative, Bio Salim est une histoire de solidarité, de résilience et d'espoir.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" variant="heroSolid" className="min-w-[200px] rounded-full transform transition-all duration-300 hover:translate-y-[-2px]">
-              <Link to="/booking">{t.hero.bookStay}</Link>
+              <Link to="/about">Découvrir notre histoire</Link>
             </Button>
             <Button asChild variant="hero" size="lg" className="min-w-[200px] rounded-full transform transition-all duration-300 hover:translate-y-[-2px]">
-              <Link to="/apartments">{t.hero.exploreApartments}</Link>
+              <Link to="/products">Voir nos produits</Link>
             </Button>
           </div>
         </div>
@@ -70,7 +69,7 @@ export default function HeroSection() {
           href="#welcome" 
           className="flex flex-col items-center opacity-70 hover:opacity-100 transition-opacity"
         >
-          <span className="text-sm mb-2">{t.hero.scrollDown}</span>
+          <span className="text-sm mb-2">Découvrir plus</span>
           <ChevronDown className="h-6 w-6" />
         </a>
       </div>

@@ -2,92 +2,46 @@ import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import BookingForm from "@/components/BookingForm";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ApartmentCard, { ApartmentProps } from "@/components/ApartmentCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Wifi, Utensils, Waves, LifeBuoy, MapPin, Coffee } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { ArrowRight, Heart, Wheat, Lightbulb, Package, Users, TrendingUp } from "lucide-react";
 
-// Sample apartments data
-const featuredApartments: ApartmentProps[] = [
+// Import images
+import ihssanePortrait from "@/assets/ihssane-portrait.jpg";
+import sorghumCloseup from "@/assets/sorghum-closeup.jpg";
+import alMoutmirTraining from "@/assets/al-moutmir-training.jpg";
+import sorghumFlour from "@/assets/sorghum-flour.jpg";
+import sorghumCouscous from "@/assets/sorghum-couscous.jpg";
+import sorghumPasta from "@/assets/sorghum-pasta.jpg";
+import womenGroup from "@/assets/women-group.jpg";
+
+// Products data
+const products = [
   {
     id: "1",
-    name: "Deluxe Sea View Suite",
-    description: "Luxurious suite with panoramic sea views, modern amenities, and a private balcony.",
-    price: 180,
-    capacity: 2,
-    size: 45,
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop",
-    location: "Beachfront",
-    features: ["Wi-Fi", "Kitchen", "Bathroom", "Air Conditioning", "TV", "Balcony"]
+    name: "Farine de sorgho",
+    description: "Idéale pour vos recettes traditionnelles",
+    image: sorghumFlour
   },
   {
     id: "2",
-    name: "Premium Family Apartment",
-    description: "Spacious apartment ideal for families, with full kitchen and stunning coastal views.",
-    price: 250,
-    capacity: 4,
-    size: 75,
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-    location: "Second row",
-    features: ["Wi-Fi", "Kitchen", "Bathroom", "Air Conditioning", "TV", "Washing Machine"]
+    name: "Couscous de sorgho",
+    description: "Savoureux et nutritif",
+    image: sorghumCouscous
   },
   {
     id: "3",
-    name: "Executive Beach Studio",
-    description: "Elegant studio with direct beach access, modern design, and premium finishes.",
-    price: 150,
-    capacity: 2,
-    size: 35,
-    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&h=600&fit=crop",
-    location: "Beachfront",
-    features: ["Wi-Fi", "Kitchenette", "Bathroom", "Air Conditioning", "TV"]
+    name: "Pâtes artisanales au sorgho",
+    description: "Respectant la tradition et la santé",
+    image: sorghumPasta
   }
 ];
 
 export default function Index() {
-  const { t } = useLanguage();
-  
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
-  
-  // Feature items
-  const features = [
-    {
-      icon: <Waves className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.beachfront.title,
-      description: t.home.amenities.features.beachfront.description
-    },
-    {
-      icon: <LifeBuoy className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.pools.title,
-      description: t.home.amenities.features.pools.description
-    },
-    {
-      icon: <Utensils className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.restaurant.title,
-      description: t.home.amenities.features.restaurant.description
-    },
-    {
-      icon: <Wifi className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.wifi.title,
-      description: t.home.amenities.features.wifi.description
-    },
-    {
-      icon: <Coffee className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.bar.title,
-      description: t.home.amenities.features.bar.description
-    },
-    {
-      icon: <MapPin className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.location.title,
-      description: t.home.amenities.features.location.description
-    }
-  ];
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -97,159 +51,207 @@ export default function Index() {
         {/* Hero Section */}
         <HeroSection />
         
-        {/* Welcome Section */}
-        <section id="welcome" className="section">
+        {/* Mission Section */}
+        <section id="mission" className="section">
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="animate-fade-in [animation-delay:100ms]">
                 <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                  {t.home.welcome.subtitle}
+                  Bio Salim
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
-                  {t.home.welcome.title}
+                  Notre mission
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  {t.home.welcome.description1}
+                  Chez Bio Salim, notre mission dépasse la simple production agricole. Nous œuvrons pour :
                 </p>
-                <p className="text-muted-foreground mb-8">
-                  {t.home.welcome.description2}
-                </p>
-                <Button asChild className="btn-primary">
-                  <Link to="/about">
-                    {t.home.welcome.learnMore} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-              
-              <div className="relative animate-fade-in [animation-delay:300ms]">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=600&fit=crop"
-                    alt="Seaside view" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -bottom-6 -left-6 w-2/3 rounded-2xl overflow-hidden shadow-xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=400&h=300&fit=crop"
-                    alt="Luxury apartment interior" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -top-6 -right-6 w-1/2 rounded-2xl overflow-hidden shadow-xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&h=300&fit=crop"
-                    alt="Pool view" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* Booking Form Section */}
-        <section className="relative py-20 bg-gradient-to-r from-sea-light to-white dark:from-sea-dark dark:to-background overflow-hidden">
-          <div className="container relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="animate-fade-in">
-                <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                  {t.home.booking.subtitle}
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
-                  {t.home.booking.title}
-                </h2>
-                <p className="text-muted-foreground mb-6">
-                  {t.home.booking.description}
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {t.home.booking.benefits.map((item, index) => (
-                    <li key={index} className="flex items-center">
-                      <div className="h-5 w-5 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-3">
-                        <ArrowRight className="h-3 w-3" />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <Heart className="h-5 w-5 text-primary mr-3 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold mb-1">Autonomiser économiquement les femmes rurales</h3>
+                      <p className="text-muted-foreground text-sm">Leur offrir des compétences et un rôle actif dans la coopérative.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <Wheat className="h-5 w-5 text-primary mr-3 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold mb-1">Préserver la biodiversité</h3>
+                      <p className="text-muted-foreground text-sm">En cultivant le sorgho, une céréale locale résistante à la sécheresse.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <Lightbulb className="h-5 w-5 text-primary mr-3 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold mb-1">Promouvoir une alimentation saine</h3>
+                      <p className="text-muted-foreground text-sm">Grâce à des produits 100 % naturels.</p>
+                    </div>
+                  </li>
                 </ul>
               </div>
               
-              <BookingForm />
+              <div className="relative animate-fade-in [animation-delay:300ms]">
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden">
+                  <img 
+                    src={ihssanePortrait}
+                    alt="Ihssane Hamoudane et les membres de la coopérative" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-1/2 rounded-2xl overflow-hidden shadow-xl">
+                  <img 
+                    src={sorghumCloseup}
+                    alt="Épis de sorgho mûrs" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-          
-          {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
-            <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-primary/50 blur-3xl" />
-            <div className="absolute bottom-10 right-40 w-48 h-48 rounded-full bg-sea-light blur-3xl" />
           </div>
         </section>
         
-        {/* Featured Apartments */}
+        {/* Al Moutmir Section */}
+        <section className="relative py-20 bg-gradient-to-r from-primary/5 to-white dark:from-primary/10 dark:to-background overflow-hidden">
+          <div className="container relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="relative animate-fade-in">
+                <img 
+                  src={alMoutmirTraining}
+                  alt="Session de formation Al Moutmir" 
+                  className="w-full rounded-2xl shadow-lg"
+                />
+              </div>
+              
+              <div className="animate-fade-in [animation-delay:200ms]">
+                <span className="text-sm text-primary font-medium uppercase tracking-wider">
+                  Partenariat
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
+                  Al Moutmir – Catalyseur de notre réussite
+                </h2>
+                <div className="space-y-4 text-muted-foreground">
+                  <p>
+                    La coopérative Bio Salim n'aurait pas atteint son plein potentiel sans l'appui de l'initiative Al Moutmir, un programme dédié à soutenir les initiatives locales à fort impact social. Dès le départ, nous avons rencontré des défis, et leur accompagnement a transformé ces obstacles en opportunités concrètes.
+                  </p>
+                  <p>
+                    Grâce à Al Moutmir, nous avons bénéficié de formations techniques, appris à structurer notre coopérative et améliorer la qualité de nos produits. Les femmes ont ainsi développé leurs compétences et renforcé leur confiance en elles.
+                  </p>
+                  <p>
+                    Le programme nous a également guidés pour commercialiser nos produits et utiliser des plateformes digitales afin d'atteindre de nouveaux marchés. Cet appui a été essentiel pour faire de Bio Salim un modèle de développement rural durable.
+                  </p>
+                </div>
+                <blockquote className="mt-8 p-6 bg-white dark:bg-card rounded-lg border-l-4 border-primary shadow-md">
+                  <p className="text-lg italic text-foreground mb-3">
+                    "Al Moutmir nous a donné les outils, la confiance et le soutien nécessaires pour transformer un rêve en réalité."
+                  </p>
+                  <cite className="text-primary font-semibold">— Ihssane Hamoudane</cite>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Products Section */}
         <section className="section">
           <div className="container">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
               <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                {t.home.featuredApartments.subtitle}
+                Nos créations
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-                {t.home.featuredApartments.title}
+                Nos produits
               </h2>
               <p className="text-muted-foreground">
-                {t.home.featuredApartments.description}
+                Du champ à votre table, nos produits sont transformés avec soin et amour. Découvrez notre gamme :
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredApartments.map((apartment, index) => (
-                <div key={apartment.id} className="animate-fade-in" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
-                  <ApartmentCard apartment={apartment} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {products.map((product, index) => (
+                <div 
+                  key={product.id} 
+                  className="glass-card p-6 rounded-xl text-center animate-fade-in" 
+                  style={{ animationDelay: `${(index + 1) * 100}ms` }}
+                >
+                  <div className="aspect-square rounded-lg overflow-hidden mb-4">
+                    <img 
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
+                  <p className="text-muted-foreground">{product.description}</p>
                 </div>
               ))}
             </div>
             
-            <div className="text-center mt-12">
+            <div className="text-center">
+              <blockquote className="text-lg italic text-muted-foreground mb-6 max-w-2xl mx-auto">
+                "Chaque produit que nous créons porte l'amour, le savoir-faire et la force des femmes de Bio Salim."
+              </blockquote>
               <Button asChild className="btn-primary">
-                <Link to="/apartments">
-                  {t.home.featuredApartments.viewAll} <ArrowRight className="ml-2 h-4 w-4" />
+                <Link to="/products">
+                  Découvrir tous nos produits <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
           </div>
         </section>
         
-        {/* Testimonials Section */}
-        <TestimonialsSection />
-        
-        {/* Features Section */}
+        {/* Impact Section */}
         <section className="section bg-card">
           <div className="container">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
               <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                {t.home.amenities.subtitle}
+                Nos résultats
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-                {t.home.amenities.title}
+                Notre impact
               </h2>
-              <p className="text-muted-foreground">
-                {t.home.amenities.description}
-              </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <div 
-                  key={index} 
-                  className="glass-card p-6 rounded-xl animate-fade-in flex flex-col items-center text-center"
-                  style={{ animationDelay: `${(index + 1) * 100}ms` }}
-                >
-                  <div className="mb-4 p-3 rounded-full bg-primary/10">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center animate-fade-in [animation-delay:100ms]">
+                <div className="mb-4 p-4 rounded-full bg-primary/10 w-20 h-20 flex items-center justify-center mx-auto">
+                  <Users className="h-10 w-10 text-primary" />
                 </div>
-              ))}
+                <div className="text-4xl font-bold text-primary mb-2">30+</div>
+                <h3 className="text-xl font-semibold mb-2">femmes</h3>
+                <p className="text-muted-foreground">
+                  Plus de 30 femmes rurales gagnent leur indépendance financière et participent activement à la coopérative.
+                </p>
+              </div>
+              
+              <div className="text-center animate-fade-in [animation-delay:200ms]">
+                <div className="mb-4 p-4 rounded-full bg-primary/10 w-20 h-20 flex items-center justify-center mx-auto">
+                  <Package className="h-10 w-10 text-primary" />
+                </div>
+                <div className="text-4xl font-bold text-primary mb-2">3</div>
+                <h3 className="text-xl font-semibold mb-2">produits phares</h3>
+                <p className="text-muted-foreground">
+                  Farine, couscous et pâtes au sorgho, illustrant notre savoir-faire et notre engagement pour une alimentation saine.
+                </p>
+              </div>
+              
+              <div className="text-center animate-fade-in [animation-delay:300ms]">
+                <div className="mb-4 p-4 rounded-full bg-primary/10 w-20 h-20 flex items-center justify-center mx-auto">
+                  <TrendingUp className="h-10 w-10 text-primary" />
+                </div>
+                <div className="text-4xl font-bold text-primary mb-2">1</div>
+                <h3 className="text-xl font-semibold mb-2">communauté transformée</h3>
+                <p className="text-muted-foreground">
+                  Chaque récolte et chaque produit vendu contribue à améliorer l'éducation, le transport et le bien-être des villages de la région.
+                </p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <img 
+                src={womenGroup}
+                alt="Groupe des femmes de Bio Salim avec leurs produits"
+                className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg"
+              />
             </div>
           </div>
         </section>
@@ -259,34 +261,20 @@ export default function Index() {
           <div className="container">
             <div className="max-w-3xl mx-auto text-center animate-fade-in">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                {t.home.cta.title}
+                Rejoignez notre mission
               </h2>
               <p className="text-muted-foreground mb-8">
-                {t.home.cta.description}
+                Découvrez comment vous pouvez soutenir Bio Salim et contribuer à l'autonomisation des femmes rurales de Chefchaouen.
               </p>
-              <Button asChild size="lg" className="btn-primary">
-                <Link to="/booking">{t.home.cta.bookNow}</Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg" className="btn-primary">
+                  <Link to="/contact">Nous contacter</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link to="/about">En savoir plus</Link>
+                </Button>
+              </div>
             </div>
-          </div>
-          
-          {/* Decorative waves */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 overflow-hidden">
-            <svg 
-              className="absolute bottom-0 w-full h-24 fill-background"
-              preserveAspectRatio="none"
-              viewBox="0 0 1440 74"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                d="M0,37.1L40,34.5C80,32,160,27,240,29.6C320,32,400,42,480,42.9C560,44,640,35,720,32.1C800,30,880,34,960,40.8C1040,47,1120,56,1200,56.6C1280,57,1360,48,1400,43.3L1440,39.1L1440,74L1400,74C1360,74,1280,74,1200,74C1120,74,1040,74,960,74C880,74,800,74,720,74C640,74,560,74,480,74C400,74,320,74,240,74C160,74,80,74,40,74L0,74Z"
-                className="animate-wave opacity-50"
-              />
-              <path 
-                d="M0,37.1L40,34.5C80,32,160,27,240,29.6C320,32,400,42,480,42.9C560,44,640,35,720,32.1C800,30,880,34,960,40.8C1040,47,1120,56,1200,56.6C1280,57,1360,48,1400,43.3L1440,39.1L1440,74L1400,74C1360,74,1280,74,1200,74C1120,74,1040,74,960,74C880,74,800,74,720,74C640,74,560,74,480,74C400,74,320,74,240,74C160,74,80,74,40,74L0,74Z"
-                className="animate-wave opacity-100 [animation-delay:-4s]"
-              />
-            </svg>
           </div>
         </section>
       </main>
