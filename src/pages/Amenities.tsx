@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Heart, Dumbbell, Droplets, Activity, Utensils, Wine, Coffee, Clock, Car, Plane, Car as CarIcon, MapPin, Waves, Users, Music, BookOpen } from "lucide-react";
+import { Heart, Dumbbell, Droplets, Activity, Utensils, Wine, Coffee, Clock, Car, Plane, Car as CarIcon, MapPin, Zap, Users, Music, BookOpen } from "lucide-react";
 
 export default function Amenities() {
   const { t } = useLanguage();
@@ -19,7 +19,7 @@ export default function Amenities() {
       wellness: [<Heart key={0} />, <Dumbbell key={1} />, <Droplets key={2} />, <Activity key={3} />],
       dining: [<Utensils key={0} />, <Coffee key={1} />, <Wine key={2} />, <Clock key={3} />],
       services: [<Clock key={0} />, <Plane key={1} />, <CarIcon key={2} />, <MapPin key={3} />],
-      entertainment: [<Waves key={0} />, <Users key={1} />, <Music key={2} />, <BookOpen key={3} />]
+      entertainment: [<Zap key={0} />, <Users key={1} />, <Music key={2} />, <BookOpen key={3} />]
     };
     
     return icons[categoryName as keyof typeof icons]?.[index] || <Coffee />;
