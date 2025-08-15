@@ -1,24 +1,20 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
-import LanguageSelector from "./LanguageSelector";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Navbar() {
-  const { t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
   const navLinks = [
-    { name: t.nav.home, path: "/" },
-    { name: t.nav.apartments, path: "/apartments" },
-    { name: t.nav.amenities, path: "/amenities" },
-    { name: t.nav.gallery, path: "/gallery" },
-    { name: t.nav.contact, path: "/contact" }
+    { name: "Accueil", path: "/" },
+    { name: "À propos", path: "/about" },
+    { name: "Produits", path: "/products" },
+    { name: "Contact", path: "/contact" }
   ];
 
   useEffect(() => {
@@ -35,7 +31,9 @@ export default function Navbar() {
   return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", scrolled ? "bg-white/80 dark:bg-card/80 backdrop-blur-lg py-3 shadow-md" : "bg-transparent py-5")}>
       <nav className="container flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <LanguageSelector />
+          <Link to="/" className="text-xl font-bold text-primary">
+            Bio Salim
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
@@ -47,15 +45,23 @@ export default function Navbar() {
             </li>)}
         </ul>
 
-        <div className="hidden md:flex items-center space-x-2">
+        <div className="hidden md:flex items-center space-x-4">
+          <Button variant="ghost" size="icon" className="relative">
+            <ShoppingCart className="h-5 w-5" />
+            <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-primary text-xs text-white flex items-center justify-center">0</span>
+          </Button>
           <ThemeToggle />
           <Button asChild className="btn-primary">
-            <Link to="/booking">{t.nav.bookNow}</Link>
+            <Link to="/contact">Nous contacter</Link>
           </Button>
         </div>
 
         {/* Mobile Navigation */}
         <div className="md:hidden flex items-center space-x-2">
+          <Button variant="ghost" size="icon" className="relative">
+            <ShoppingCart className="h-5 w-5" />
+            <span className="absolute -top-2 -right-2 h-4 w-4 rounded-full bg-primary text-xs text-white flex items-center justify-center">0</span>
+          </Button>
           <ThemeToggle />
           <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="rounded-full">
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -68,8 +74,10 @@ export default function Navbar() {
         <div className={cn("fixed inset-y-0 right-0 w-3/4 max-w-sm bg-card shadow-xl p-6 transition-transform duration-300 ease-in-out", mobileMenuOpen ? "translate-x-0" : "translate-x-full")}>
           <div className="flex flex-col h-full justify-between">
             <div>
-              <div className="flex justify-between mb-8">
-                <LanguageSelector />
+              <div className="flex justify-between items-center mb-8">
+                <Link to="/" className="text-xl font-bold text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  Bio Salim
+                </Link>
                 <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="rounded-full">
                   <X className="h-6 w-6" />
                 </Button>
@@ -83,11 +91,17 @@ export default function Navbar() {
               </ul>
             </div>
             
-            <Button asChild className="w-full btn-primary mt-6">
-              <Link to="/booking" onClick={() => setMobileMenuOpen(false)}>
-                {t.nav.bookNow}
-              </Link>
-            </Button>
+            <div className="flex flex-col space-y-4">
+              <Button variant="ghost" size="sm" className="justify-start">
+                <ShoppingCart className="h-4 w-4 mr-2" />
+                Panier (0)
+              </Button>
+              <Button asChild className="w-full btn-primary">
+                <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
+                  Nous contacter
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
