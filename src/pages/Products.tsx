@@ -1,16 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star, Leaf, Award } from "lucide-react";
+import { ShoppingCart, Star, Leaf, Award, Filter } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Import images
 import sorghumFlour from "@/assets/sorghum-flour.jpg";
 import sorghumCouscous from "@/assets/sorghum-couscous.jpg";
 import sorghumPasta from "@/assets/sorghum-pasta.jpg";
+
+// Categories
+const categories = [
+  "Tous",
+  "Couscous sans gluten",
+  "Farine sans gluten",
+  "Céréales sans gluten et dérivés",
+  "Céréales et dérivés",
+  "Couscous",
+  "Graines et herbes",
+  "Légumineuses naturelles",
+  "Assaisonnements et Épices"
+];
 
 // Products data
 const products = [
@@ -22,6 +42,7 @@ const products = [
     price: 45,
     weight: "1kg",
     image: sorghumFlour,
+    category: "Farine sans gluten",
     benefits: ["Sans gluten", "Riche en fibres", "Source de protéines", "Cultivé localement"],
     nutritionalInfo: {
       protein: "11g",
@@ -38,7 +59,8 @@ const products = [
     price: 55,
     weight: "500g",
     image: sorghumCouscous,
-    benefits: ["Artisanal", "Digestion facile", "Pauvre en gluten", "Préparation rapide"],
+    category: "Couscous sans gluten",
+    benefits: ["Artisanal", "Digestion facile", "Sans gluten", "Préparation rapide"],
     nutritionalInfo: {
       protein: "10g",
       fiber: "5.2g",
@@ -54,6 +76,7 @@ const products = [
     price: 38,
     weight: "400g",
     image: sorghumPasta,
+    category: "Céréales sans gluten et dérivés",
     benefits: ["Fait main", "Cuisson parfaite", "Goût authentique", "Texture unique"],
     nutritionalInfo: {
       protein: "9g",
@@ -61,11 +84,97 @@ const products = [
       iron: "2.9mg",
       calcium: "28mg"
     }
+  },
+  {
+    id: "4",
+    name: "Couscous traditionnel",
+    description: "Couscous artisanal préparé selon les méthodes ancestrales. Texture moelleuse et saveur authentique.",
+    longDescription: "Notre couscous traditionnel est roulé à la main par nos artisanes expertes, offrant une texture parfaite et un goût incomparable.",
+    price: 35,
+    weight: "500g",
+    image: sorghumCouscous,
+    category: "Couscous",
+    benefits: ["Artisanal", "Tradition", "Texture parfaite", "Saveur authentique"],
+    nutritionalInfo: {
+      protein: "12g",
+      fiber: "2.8g",
+      iron: "1.8mg",
+      zinc: "1.5mg"
+    }
+  },
+  {
+    id: "5",
+    name: "Mélange de graines bio",
+    description: "Assortiment de graines biologiques cultivées localement. Parfait pour vos salades et plats santé.",
+    longDescription: "Un mélange soigneusement sélectionné de graines de tournesol, courge et sésame, cultivées sans pesticides dans nos fermes partenaires.",
+    price: 42,
+    weight: "300g",
+    image: sorghumFlour,
+    category: "Graines et herbes",
+    benefits: ["Bio", "Riche en oméga", "Cultivé localement", "Sans pesticides"],
+    nutritionalInfo: {
+      protein: "18g",
+      fiber: "8.2g",
+      iron: "5.1mg",
+      magnesium: "220mg"
+    }
+  },
+  {
+    id: "6",
+    name: "Lentilles vertes du Maroc",
+    description: "Lentilles vertes premium cultivées dans les régions montagneuses. Excellente source de protéines végétales.",
+    longDescription: "Nos lentilles vertes sont cultivées en altitude, ce qui leur confère une saveur unique et une texture ferme idéale pour vos plats mijotés.",
+    price: 28,
+    weight: "500g",
+    image: sorghumPasta,
+    category: "Légumineuses naturelles",
+    benefits: ["Riche en protéines", "Source de fer", "Cultivé en altitude", "Cuisson rapide"],
+    nutritionalInfo: {
+      protein: "24g",
+      fiber: "11g",
+      iron: "7.6mg",
+      folate: "358mcg"
+    }
+  },
+  {
+    id: "7",
+    name: "Mélange d'épices Ras el Hanout",
+    description: "Mélange traditionnel d'épices marocaines aux arômes complexes. Indispensable en cuisine orientale.",
+    longDescription: "Notre Ras el Hanout est composé de plus de 20 épices soigneusement sélectionnées et mélangées selon une recette traditionnelle transmise de génération en génération.",
+    price: 65,
+    weight: "100g",
+    image: sorghumFlour,
+    category: "Assaisonnements et Épices",
+    benefits: ["Traditionnel", "20+ épices", "Recette ancestrale", "Arômes intenses"],
+    nutritionalInfo: {
+      protein: "12g",
+      fiber: "25g",
+      iron: "47mg",
+      calcium: "1800mg"
+    }
+  },
+  {
+    id: "8",
+    name: "Flocons d'avoine bio",
+    description: "Flocons d'avoine biologiques, parfaits pour un petit-déjeuner nutritif et énergisant.",
+    longDescription: "Nos flocons d'avoine sont issus de l'agriculture biologique et conservent toutes leurs fibres naturelles pour un petit-déjeuner sain et équilibré.",
+    price: 32,
+    weight: "500g",
+    image: sorghumCouscous,
+    category: "Céréales et dérivés",
+    benefits: ["Bio", "Riche en fibres", "Énergisant", "Petit-déjeuner sain"],
+    nutritionalInfo: {
+      protein: "13g",
+      fiber: "10g",
+      iron: "4.2mg",
+      magnesium: "138mg"
+    }
   }
 ];
 
 export default function Products() {
   const { addToCart } = useCart();
+  const [selectedCategory, setSelectedCategory] = useState("Tous");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -81,6 +190,10 @@ export default function Products() {
     });
     toast.success(`${product.name} ajouté au panier!`);
   };
+
+  const filteredProducts = selectedCategory === "Tous" 
+    ? products 
+    : products.filter(product => product.category === selectedCategory);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -104,11 +217,56 @@ export default function Products() {
           </div>
         </section>
 
+        {/* Filter Section */}
+        <section className="py-8 bg-muted/30">
+          <div className="container">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="flex items-center gap-2">
+                <Filter className="h-5 w-5 text-primary" />
+                <span className="font-medium">Filtrer par catégorie:</span>
+              </div>
+              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                <SelectTrigger className="w-full md:w-80">
+                  <SelectValue placeholder="Choisir une catégorie" />
+                </SelectTrigger>
+                <SelectContent>
+                  {categories.map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            
+            {/* Category Buttons - Alternative UI */}
+            <div className="mt-6 flex flex-wrap gap-2 justify-center">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category)}
+                  className="text-xs"
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Products Section */}
         <section className="section">
           <div className="container">
+            <div className="mb-6">
+              <p className="text-muted-foreground">
+                {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''} 
+                {selectedCategory !== "Tous" && ` dans "${selectedCategory}"`}
+              </p>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {products.map((product, index) => (
+              {filteredProducts.map((product, index) => (
                 <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
                   <div className="glass-card rounded-xl overflow-hidden">
                     {/* Product Image */}
