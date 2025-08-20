@@ -35,8 +35,12 @@ export default function Navbar() {
   return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", scrolled ? "bg-white/80 dark:bg-card/80 backdrop-blur-lg py-3 shadow-md" : "bg-transparent py-5")}>
       <nav className="container flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <Link to="/" className="text-xl font-bold text-primary">
-            Bio Salim
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/3bd6bd21-eda9-4888-87a8-14ce58d29b1a.png" 
+              alt="Bio Salim" 
+              className="h-10 w-auto"
+            />
           </Link>
         </div>
 
@@ -97,8 +101,12 @@ export default function Navbar() {
           <div className="flex flex-col h-full justify-between">
             <div>
               <div className="flex justify-between items-center mb-8">
-                <Link to="/" className="text-xl font-bold text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  Bio Salim
+                <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
+                  <img 
+                    src="/lovable-uploads/3bd6bd21-eda9-4888-87a8-14ce58d29b1a.png" 
+                    alt="Bio Salim" 
+                    className="h-8 w-auto"
+                  />
                 </Link>
                 <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="rounded-full">
                   <X className="h-6 w-6" />
