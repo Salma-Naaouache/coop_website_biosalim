@@ -5,10 +5,14 @@ import { Menu, X, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import CartModal from "./CartModal";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [cartModalOpen, setCartModalOpen] = useState(false);
+  const { getTotalItems } = useCart();
   
   const navLinks = [
     { name: "Accueil", path: "/" },
@@ -46,9 +50,18 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="relative">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="relative"
+            onClick={() => setCartModalOpen(true)}
+          >
             <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-primary text-xs text-white flex items-center justify-center">0</span>
+            {getTotalItems() > 0 && (
+              <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-primary text-xs text-white flex items-center justify-center">
+                {getTotalItems()}
+              </span>
+            )}
           </Button>
           <ThemeToggle />
           <Button asChild className="btn-primary">
@@ -58,9 +71,18 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         <div className="md:hidden flex items-center space-x-2">
-          <Button variant="ghost" size="icon" className="relative">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="relative"
+            onClick={() => setCartModalOpen(true)}
+          >
             <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -top-2 -right-2 h-4 w-4 rounded-full bg-primary text-xs text-white flex items-center justify-center">0</span>
+            {getTotalItems() > 0 && (
+              <span className="absolute -top-2 -right-2 h-4 w-4 rounded-full bg-primary text-xs text-white flex items-center justify-center">
+                {getTotalItems()}
+              </span>
+            )}
           </Button>
           <ThemeToggle />
           <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="rounded-full">
@@ -92,9 +114,17 @@ export default function Navbar() {
             </div>
             
             <div className="flex flex-col space-y-4">
-              <Button variant="ghost" size="sm" className="justify-start">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="justify-start"
+                onClick={() => {
+                  setCartModalOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+              >
                 <ShoppingCart className="h-4 w-4 mr-2" />
-                Panier (0)
+                Panier ({getTotalItems()})
               </Button>
               <Button asChild className="w-full btn-primary">
                 <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
@@ -105,5 +135,10 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      <CartModal 
+        isOpen={cartModalOpen} 
+        onClose={() => setCartModalOpen(false)} 
+      />
     </header>;
 }

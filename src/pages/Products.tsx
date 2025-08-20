@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Star, Leaf, Award } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "sonner";
 
 // Import images
 import sorghumFlour from "@/assets/sorghum-flour.jpg";
@@ -63,9 +65,22 @@ const products = [
 ];
 
 export default function Products() {
+  const { addToCart } = useCart();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleAddToCart = (product: typeof products[0]) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      weight: product.weight
+    });
+    toast.success(`${product.name} ajouté au panier!`);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -145,7 +160,10 @@ export default function Products() {
                           <div className="text-2xl font-bold text-primary">{product.price} DH</div>
                           <div className="text-sm text-muted-foreground">{product.weight}</div>
                         </div>
-                        <Button className="btn-primary">
+                        <Button 
+                          className="btn-primary"
+                          onClick={() => handleAddToCart(product)}
+                        >
                           <ShoppingCart className="h-4 w-4 mr-2" />
                           Ajouter
                         </Button>

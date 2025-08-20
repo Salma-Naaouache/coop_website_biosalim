@@ -36,6 +36,13 @@
     --ring: 167 67% 35%;
 
     --radius: 0.5rem;
+
+    /* Footer Colors */
+    --footer-bg: 53 114 105; /* #357269 */
+    --footer-text: 232 234 204; /* #E8EACC */
+    --footer-accent: 98 185 203; /* #62B9CB */
+    --footer-secondary: 140 156 124; /* #8C9C7C */
+    --footer-light: 221 226 198; /* #DDE2C6 */
   }
 
   .dark {

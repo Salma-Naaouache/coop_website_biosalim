@@ -115,11 +115,28 @@ export default function Index() {
           <div className="container relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative animate-fade-in">
-                <img 
-                  src={alMoutmirTraining}
-                  alt="Session de formation Al Moutmir" 
-                  className="w-full rounded-2xl shadow-lg"
-                />
+                <div className="grid grid-cols-2 gap-4">
+                  <img 
+                    src={alMoutmirTraining}
+                    alt="Session de formation Al Moutmir" 
+                    className="w-full rounded-xl shadow-lg"
+                  />
+                  <img 
+                    src={womenGroup}
+                    alt="Groupe des femmes de Bio Salim" 
+                    className="w-full rounded-xl shadow-lg"
+                  />
+                  <img 
+                    src={sorghumCloseup}
+                    alt="Épis de sorgho mûrs" 
+                    className="w-full rounded-xl shadow-lg"
+                  />
+                  <img 
+                    src={ihssanePortrait}
+                    alt="Ihssane Hamoudane" 
+                    className="w-full rounded-xl shadow-lg"
+                  />
+                </div>
               </div>
               
               <div className="animate-fade-in [animation-delay:200ms]">
@@ -146,6 +163,46 @@ export default function Index() {
                   </p>
                   <cite className="text-primary font-semibold">— Ihssane Hamoudane</cite>
                 </blockquote>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Founder Video Section */}
+        <section className="section bg-card">
+          <div className="container">
+            <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
+              <span className="text-sm text-primary font-medium uppercase tracking-wider">
+                Rencontrez notre fondatrice
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
+                L'histoire d'Ihssane Hamoudane
+              </h2>
+              <p className="text-muted-foreground">
+                Découvrez le parcours inspirant de notre fondatrice et sa vision pour l'autonomisation des femmes rurales.
+              </p>
+            </div>
+            
+            <div className="max-w-4xl mx-auto animate-fade-in [animation-delay:200ms]">
+              <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  src="https://www.youtube.com/embed/0XfUlMc1r14?si=U8s9H_j6CS3Hij8L" 
+                  title="Rencontre avec Ihssane Hamoudane - Fondatrice Bio Salim" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerPolicy="strict-origin-when-cross-origin" 
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+              
+              <div className="mt-8 text-center">
+                <blockquote className="text-lg italic text-muted-foreground mb-4">
+                  "Notre mission va au-delà de la production : c'est transformer des vies et préserver notre patrimoine agricole."
+                </blockquote>
+                <cite className="text-primary font-semibold">— Ihssane Hamoudane, Fondatrice de Bio Salim</cite>
               </div>
             </div>
           </div>
@@ -192,7 +249,7 @@ export default function Index() {
               </blockquote>
               <Button asChild className="btn-primary">
                 <Link to="/products">
-                  Découvrir tous nos produits <ArrowRight className="ml-2 h-4 w-4" />
+                  Voir nos produits <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -271,7 +328,7 @@ export default function Index() {
                   <Link to="/contact">Nous contacter</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link to="/about">En savoir plus</Link>
+                  <Link to="/about">Découvrir notre histoire</Link>
                 </Button>
               </div>
             </div>
