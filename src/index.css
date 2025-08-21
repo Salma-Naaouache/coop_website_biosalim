@@ -7,42 +7,42 @@
 
 @layer base {
   :root {
-    --background: 216 43% 94%;
-    --foreground: 200 67% 22%;
+    --background: 214 50% 95%; /* #EBF2FA */
+    --foreground: 205 89% 29%; /* #06668C */
 
-    --card: 42 58% 89%;
-    --card-foreground: 200 67% 22%;
+    --card: 60 45% 88%; /* #F1F1D3 */
+    --card-foreground: 205 89% 29%; /* #06668C */
 
-    --popover: 42 58% 89%;
-    --popover-foreground: 200 67% 22%;
+    --popover: 60 45% 88%; /* #F1F1D3 */
+    --popover-foreground: 205 89% 29%; /* #06668C */
 
-    --primary: 211 84% 39%; /* Chefchaouen blue */
-    --primary-foreground: 210 40% 98%;
+    --primary: 69 98% 37%; /* #A4BD01 - Bio Salim green */
+    --primary-foreground: 214 50% 95%; /* #EBF2FA */
 
-    --secondary: 207 90% 61%; /* Lighter blue */
-    --secondary-foreground: 222.2 84% 4.9%;
+    --secondary: 76 51% 46%; /* #8FB43A - Secondary green */
+    --secondary-foreground: 214 50% 95%; /* #EBF2FA */
 
-    --muted: 110 29% 80%;
-    --muted-foreground: 200 67% 22%;
+    --muted: 76 41% 60%; /* #B7CE66 - Light green */
+    --muted-foreground: 84 47% 39%; /* #679436 */
 
-    --accent: 195 100% 50%; /* Bright blue accent */
-    --accent-foreground: 210 40% 98%;
+    --accent: 207 42% 44%; /* #427AA1 - Medium blue */
+    --accent-foreground: 214 50% 95%; /* #EBF2FA */
 
     --destructive: 0 85% 60%;
-    --destructive-foreground: 216 43% 94%;
+    --destructive-foreground: 214 50% 95%; /* #EBF2FA */
 
-    --border: 110 29% 75%;
-    --input: 110 29% 75%;
-    --ring: 167 67% 35%;
+    --border: 76 41% 60%; /* #B7CE66 */
+    --input: 76 41% 60%; /* #B7CE66 */
+    --ring: 69 98% 37%; /* #A4BD01 */
 
     --radius: 0.5rem;
 
-    /* Footer Colors - Chefchaouen inspired */
-    --footer-bg: 211 84% 39%; /* Main Chefchaouen blue */
-    --footer-text: 210 40% 98%; /* White/cream text */
-    --footer-accent: 195 100% 50%; /* Bright blue accent */
-    --footer-secondary: 207 90% 61%; /* Medium blue */
-    --footer-light: 213 27% 84%; /* Light blue-gray */
+    /* Footer Colors - Bio Salim inspired */
+    --footer-bg: 84 47% 39%; /* #679436 - Dark green */
+    --footer-text: 214 50% 95%; /* #EBF2FA - Light blue */
+    --footer-accent: 69 98% 37%; /* #A4BD01 - Bright green */
+    --footer-secondary: 76 51% 46%; /* #8FB43A - Medium green */
+    --footer-light: 76 41% 60%; /* #B7CE66 - Light green */
   }
 
   .dark {
