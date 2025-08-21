@@ -92,9 +92,9 @@ export default function Contact() {
                     <div>
                       <h3 className="font-semibold mb-1">{t.contact.address}</h3>
                       <p className="text-muted-foreground">
-                        123 Seaside Boulevard<br />
-                        Costa Bella, 12345<br />
-                        Italy
+                        مركز دار اقوباع جماعة الدردار<br />
+                        N2, Chefchaouen 91000<br />
+                        Maroc
                       </p>
                     </div>
                   </div>
@@ -105,8 +105,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">{t.contact.phone}</h3>
-                      <p className="text-muted-foreground">+39 123 4567 890</p>
-                      <p className="text-muted-foreground">+39 098 7654 321 (Reservations)</p>
+                      <p className="text-muted-foreground">+212 672 695 112</p>
+                      <p className="text-muted-foreground">+212 662 102 006</p>
                     </div>
                   </div>
                   
@@ -116,8 +116,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">{t.contact.email}</h3>
-                      <p className="text-muted-foreground">info@maresereno.com</p>
-                      <p className="text-muted-foreground">reservations@maresereno.com</p>
+                      <p className="text-muted-foreground">coopbiosalim@gmail.com</p>
                     </div>
                   </div>
                   
@@ -126,11 +125,11 @@ export default function Contact() {
                       <Clock className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">{t.contact.receptionHours}</h3>
+                      <h3 className="font-semibold mb-1">Heures d'ouverture</h3>
                       <p className="text-muted-foreground">
-                        Monday - Sunday: 24 hours<br />
-                        {t.contact.checkInTime}<br />
-                        {t.contact.checkOutTime}
+                        Lundi - Vendredi: 8h00 - 18h00<br />
+                        Samedi: 8h00 - 16h00<br />
+                        Dimanche: Fermé
                       </p>
                     </div>
                   </div>
@@ -256,36 +255,28 @@ export default function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in [animation-delay:200ms]">
               {[
                 {
-                  questionKey: "checkInOut",
-                  icon: <Clock className="h-5 w-5 text-primary" />
+                  question: "Qu'est-ce que la Coopérative Bio Salim ?",
+                  answer: "La Coopérative Bio Salim est une association de producteurs locaux qui transforme et commercialise des produits naturels du terroir de Chefchaouen, dans le respect des traditions ancestrales."
                 },
                 {
-                  questionKey: "parking",
-                  icon: <MapPin className="h-5 w-5 text-primary" />
+                  question: "Vos produits sont-ils biologiques ?",
+                  answer: "Oui, tous nos produits sont cultivés selon des méthodes biologiques traditionnelles, sans pesticides ni produits chimiques, dans le respect de l'environnement."
                 },
                 {
-                  questionKey: "pets",
-                  icon: <MapPin className="h-5 w-5 text-primary" />
+                  question: "Comment puis-je passer commande ?",
+                  answer: "Vous pouvez commander directement sur notre site web, nous contacter par téléphone au +212 672 695 112, ou nous envoyer un email à coopbiosalim@gmail.com."
                 },
                 {
-                  questionKey: "breakfast",
-                  icon: <MapPin className="h-5 w-5 text-primary" />
-                },
-                {
-                  questionKey: "transfers",
-                  icon: <MapPin className="h-5 w-5 text-primary" />
-                },
-                {
-                  questionKey: "amenities",
-                  icon: <MapPin className="h-5 w-5 text-primary" />
-                },
+                  question: "Livrez-vous partout au Maroc ?",
+                  answer: "Nous livrons dans tout le Maroc. Les délais et frais de livraison varient selon votre localisation. Contactez-nous pour plus d'informations sur la livraison."
+                }
               ].map((faq, index) => (
                 <div key={index} className="glass-card p-6">
                   <h3 className="font-semibold text-lg mb-2">
-                    {t.contact.questions[faq.questionKey].question}
+                    {faq.question}
                   </h3>
                   <p className="text-muted-foreground">
-                    {t.contact.questions[faq.questionKey].answer}
+                    {faq.answer}
                   </p>
                 </div>
               ))}

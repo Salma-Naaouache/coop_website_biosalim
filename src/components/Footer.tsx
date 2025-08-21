@@ -14,20 +14,16 @@ export default function Footer() {
           <div className="animate-fade-in [animation-delay:100ms]">
             <h4 className="text-xl font-bold mb-4" style={{ color: 'hsl(var(--footer-accent))' }}>Bio Salim</h4>
             <p className="text-muted-foreground mb-4">
-              {t.footer.description}
+              À la découverte des saveurs locales ! La Coopérative Bio Salim met à l'honneur les trésors naturels de son terroir. Découvrez notre sélection premium d'épices, de céréales, d'herbes aromatiques et de couscous, cultivés et transformés dans le respect de la tradition.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="opacity-70 hover:opacity-100 transition-opacity" style={{ color: 'hsl(var(--footer-accent))' }}>
+              <a href="https://www.facebook.com/profile.php?id=100083422935004&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity" style={{ color: 'hsl(var(--footer-accent))' }}>
                 <Facebook size={20} />
                 <span className="sr-only">Facebook</span>
               </a>
-              <a href="#" className="opacity-70 hover:opacity-100 transition-opacity" style={{ color: 'hsl(var(--footer-accent))' }}>
+              <a href="https://www.instagram.com/coop_biosalim?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity" style={{ color: 'hsl(var(--footer-accent))' }}>
                 <Instagram size={20} />
                 <span className="sr-only">Instagram</span>
-              </a>
-              <a href="#" className="opacity-70 hover:opacity-100 transition-opacity" style={{ color: 'hsl(var(--footer-accent))' }}>
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
               </a>
             </div>
           </div>
@@ -61,17 +57,18 @@ export default function Footer() {
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-2 mt-0.5" style={{ color: 'hsl(var(--footer-accent))' }} />
                 <span className="opacity-70">
-                  Chefchaouen, Maroc<br />
-                  Région Tanger-Tétouan-Al Hoceima<br />
+                  مركز دار اقوباع جماعة الدردار<br />
+                  N2, Chefchaouen 91000<br />
+                  Maroc
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-2" style={{ color: 'hsl(var(--footer-accent))' }} />
-                <span className="opacity-70">+212 123 456 789</span>
+                <span className="opacity-70">+212 672 695 112 / +212 662 102 006</span>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 mr-2" style={{ color: 'hsl(var(--footer-accent))' }} />
-                <span className="opacity-70">contact@biosalim.ma</span>
+                <span className="opacity-70">coopbiosalim@gmail.com</span>
               </li>
             </ul>
           </div>

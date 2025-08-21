@@ -16,17 +16,17 @@
     --popover: 42 58% 89%;
     --popover-foreground: 200 67% 22%;
 
-    --primary: 167 67% 35%;
-    --primary-foreground: 216 43% 94%;
+    --primary: 211 84% 39%; /* Chefchaouen blue */
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 134 54% 70%;
-    --secondary-foreground: 200 67% 22%;
+    --secondary: 207 90% 61%; /* Lighter blue */
+    --secondary-foreground: 222.2 84% 4.9%;
 
     --muted: 110 29% 80%;
     --muted-foreground: 200 67% 22%;
 
-    --accent: 71 99% 37%;
-    --accent-foreground: 216 43% 94%;
+    --accent: 195 100% 50%; /* Bright blue accent */
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 85% 60%;
     --destructive-foreground: 216 43% 94%;
@@ -37,12 +37,12 @@
 
     --radius: 0.5rem;
 
-    /* Footer Colors */
-    --footer-bg: 53 114 105; /* #357269 */
-    --footer-text: 232 234 204; /* #E8EACC */
-    --footer-accent: 98 185 203; /* #62B9CB */
-    --footer-secondary: 140 156 124; /* #8C9C7C */
-    --footer-light: 221 226 198; /* #DDE2C6 */
+    /* Footer Colors - Chefchaouen inspired */
+    --footer-bg: 211 84% 39%; /* Main Chefchaouen blue */
+    --footer-text: 210 40% 98%; /* White/cream text */
+    --footer-accent: 195 100% 50%; /* Bright blue accent */
+    --footer-secondary: 207 90% 61%; /* Medium blue */
+    --footer-light: 213 27% 84%; /* Light blue-gray */
   }
 
   .dark {
