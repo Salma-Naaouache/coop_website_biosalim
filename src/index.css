@@ -7,42 +7,42 @@
 
 @layer base {
   :root {
-    --background: 214 50% 95%; /* #EBF2FA - Light blue background */
-    --foreground: 205 89% 29%; /* #06668C - Deep blue text */
+    --background: 100 15% 86%; /* #DCDFDA - Light grayish green background */
+    --foreground: 79 54% 30%; /* Dark green text */
 
-    --card: 60 45% 92%; /* #F1F1D3 - Warm cream cards */
-    --card-foreground: 205 89% 29%; /* #06668C - Deep blue text */
+    --card: 60 45% 92%; /* #F1F1D3 - Cream cards */
+    --card-foreground: 79 54% 30%; /* Dark green text on cards */
 
-    --popover: 60 45% 92%; /* #F1F1D3 - Warm cream */
-    --popover-foreground: 205 89% 29%; /* #06668C - Deep blue */
+    --popover: 60 45% 92%; /* #F1F1D3 - Cream */
+    --popover-foreground: 79 54% 30%; /* Dark green text */
 
-    --primary: 207 42% 44%; /* #427AA1 - Chefchaouen blue primary */
-    --primary-foreground: 214 50% 95%; /* #EBF2FA - Light blue text */
+    --primary: 79 54% 46%; /* #8FB43A - Dark green primary */
+    --primary-foreground: 60 45% 92%; /* #F1F1D3 - Cream text */
 
-    --secondary: 69 98% 37%; /* #A4BD01 - Bio Salim green secondary */
-    --secondary-foreground: 214 50% 95%; /* #EBF2FA - Light blue text */
+    --secondary: 79 50% 60%; /* #B7CE66 - Medium green secondary */
+    --secondary-foreground: 79 54% 30%; /* Dark green text */
 
-    --muted: 84 47% 55%; /* #8FB43A - Muted green */
-    --muted-foreground: 205 89% 29%; /* #06668C - Deep blue */
+    --muted: 79 37% 73%; /* #C8D6A2 - Light green muted */
+    --muted-foreground: 79 54% 30%; /* Dark green text */
 
-    --accent: 84 47% 39%; /* #679436 - Dark green accent */
-    --accent-foreground: 214 50% 95%; /* #EBF2FA - Light blue text */
+    --accent: 79 50% 60%; /* #B7CE66 - Medium green accent */
+    --accent-foreground: 79 54% 30%; /* Dark green text */
 
     --destructive: 0 85% 60%;
-    --destructive-foreground: 214 50% 95%; /* #EBF2FA */
+    --destructive-foreground: 60 45% 92%; /* #F1F1D3 */
 
-    --border: 214 50% 85%; /* Light blue borders */
-    --input: 214 50% 85%; /* Light blue inputs */
-    --ring: 207 42% 44%; /* #427AA1 - Chefchaouen blue ring */
+    --border: 79 37% 73%; /* #C8D6A2 - Light green borders */
+    --input: 79 37% 73%; /* #C8D6A2 - Light green inputs */
+    --ring: 79 54% 46%; /* #8FB43A - Dark green ring */
 
     --radius: 0.5rem;
 
-    /* Footer Colors - Harmonious with logo */
-    --footer-bg: 205 89% 29%; /* #06668C - Deep blue */
-    --footer-text: 214 50% 95%; /* #EBF2FA - Light blue */
-    --footer-accent: 69 98% 37%; /* #A4BD01 - Bio Salim green */
-    --footer-secondary: 207 42% 44%; /* #427AA1 - Medium blue */
-    --footer-light: 84 47% 55%; /* #8FB43A - Light green */
+    /* Footer Colors - Dark green footer */
+    --footer-bg: 79 54% 46%; /* #8FB43A - Dark green */
+    --footer-text: 60 45% 92%; /* #F1F1D3 - Cream text */
+    --footer-accent: 79 50% 60%; /* #B7CE66 - Medium green */
+    --footer-secondary: 79 37% 73%; /* #C8D6A2 - Light green */
+    --footer-light: 100 15% 86%; /* #DCDFDA - Light grayish green */
   }
 
   .dark {
