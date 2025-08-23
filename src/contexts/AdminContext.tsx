@@ -13,6 +13,9 @@ interface Product {
   description: string;
   stock: number;
   image?: string;
+  category?: string;
+  benefits?: string[];
+  nutritionalInfo?: string[];
 }
 
 interface Order {
@@ -58,21 +61,30 @@ const SAMPLE_PRODUCTS: Product[] = [
     name: 'Farine de sorgho',
     price: 25,
     description: 'Farine de sorgho bio cultivée dans les montagnes de Chefchaouen',
-    stock: 50
+    stock: 50,
+    category: 'Farine sans gluten',
+    benefits: ['Riche en fibres', 'Sans gluten', 'Source de protéines'],
+    nutritionalInfo: ['15g de protéines pour 100g', '5g de fibres pour 100g']
   },
   {
     id: '2',
     name: 'Couscous de sorgho',
     price: 30,
     description: 'Couscous traditionnel à base de sorgho, savoureux et nutritif',
-    stock: 35
+    stock: 35,
+    category: 'Couscous sans gluten',
+    benefits: ['Sans gluten', 'Riche en minéraux', 'Facile à digérer'],
+    nutritionalInfo: ['12g de protéines pour 100g', '8g de fibres pour 100g']
   },
   {
     id: '3',
     name: 'Pâtes artisanales au sorgho',
     price: 28,
     description: 'Pâtes artisanales fabriquées avec amour par les femmes de Bio Salim',
-    stock: 40
+    stock: 40,
+    category: 'Céréales sans gluten et dérivés',
+    benefits: ['Artisanal', 'Sans gluten', 'Cuisson rapide'],
+    nutritionalInfo: ['14g de protéines pour 100g', '3g de fibres pour 100g']
   }
 ];
 

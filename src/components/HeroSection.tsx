@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import heroImage from "@/assets/hero-chefchaouen.jpg";
+import heroImage from "@/assets/hero-chefchaouen-mountains.jpg";
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);

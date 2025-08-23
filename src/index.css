@@ -7,42 +7,42 @@
 
 @layer base {
   :root {
-    --background: 214 50% 95%; /* #EBF2FA */
-    --foreground: 205 89% 29%; /* #06668C */
+    --background: 214 50% 95%; /* #EBF2FA - Light blue background */
+    --foreground: 205 89% 29%; /* #06668C - Deep blue text */
 
-    --card: 60 45% 88%; /* #F1F1D3 */
-    --card-foreground: 205 89% 29%; /* #06668C */
+    --card: 60 45% 92%; /* #F1F1D3 - Warm cream cards */
+    --card-foreground: 205 89% 29%; /* #06668C - Deep blue text */
 
-    --popover: 60 45% 88%; /* #F1F1D3 */
-    --popover-foreground: 205 89% 29%; /* #06668C */
+    --popover: 60 45% 92%; /* #F1F1D3 - Warm cream */
+    --popover-foreground: 205 89% 29%; /* #06668C - Deep blue */
 
-    --primary: 69 98% 37%; /* #A4BD01 - Bio Salim green */
-    --primary-foreground: 214 50% 95%; /* #EBF2FA */
+    --primary: 207 42% 44%; /* #427AA1 - Chefchaouen blue primary */
+    --primary-foreground: 214 50% 95%; /* #EBF2FA - Light blue text */
 
-    --secondary: 76 51% 46%; /* #8FB43A - Secondary green */
-    --secondary-foreground: 214 50% 95%; /* #EBF2FA */
+    --secondary: 69 98% 37%; /* #A4BD01 - Bio Salim green secondary */
+    --secondary-foreground: 214 50% 95%; /* #EBF2FA - Light blue text */
 
-    --muted: 76 41% 60%; /* #B7CE66 - Light green */
-    --muted-foreground: 84 47% 39%; /* #679436 */
+    --muted: 84 47% 55%; /* #8FB43A - Muted green */
+    --muted-foreground: 205 89% 29%; /* #06668C - Deep blue */
 
-    --accent: 207 42% 44%; /* #427AA1 - Medium blue */
-    --accent-foreground: 214 50% 95%; /* #EBF2FA */
+    --accent: 84 47% 39%; /* #679436 - Dark green accent */
+    --accent-foreground: 214 50% 95%; /* #EBF2FA - Light blue text */
 
     --destructive: 0 85% 60%;
     --destructive-foreground: 214 50% 95%; /* #EBF2FA */
 
-    --border: 76 41% 60%; /* #B7CE66 */
-    --input: 76 41% 60%; /* #B7CE66 */
-    --ring: 69 98% 37%; /* #A4BD01 */
+    --border: 214 50% 85%; /* Light blue borders */
+    --input: 214 50% 85%; /* Light blue inputs */
+    --ring: 207 42% 44%; /* #427AA1 - Chefchaouen blue ring */
 
     --radius: 0.5rem;
 
-    /* Footer Colors - Bio Salim inspired */
-    --footer-bg: 84 47% 39%; /* #679436 - Dark green */
+    /* Footer Colors - Harmonious with logo */
+    --footer-bg: 205 89% 29%; /* #06668C - Deep blue */
     --footer-text: 214 50% 95%; /* #EBF2FA - Light blue */
-    --footer-accent: 69 98% 37%; /* #A4BD01 - Bright green */
-    --footer-secondary: 76 51% 46%; /* #8FB43A - Medium green */
-    --footer-light: 76 41% 60%; /* #B7CE66 - Light green */
+    --footer-accent: 69 98% 37%; /* #A4BD01 - Bio Salim green */
+    --footer-secondary: 207 42% 44%; /* #427AA1 - Medium blue */
+    --footer-light: 84 47% 55%; /* #8FB43A - Light green */
   }
 
   .dark {

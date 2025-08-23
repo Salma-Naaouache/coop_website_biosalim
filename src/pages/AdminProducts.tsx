@@ -6,9 +6,15 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAdmin } from '@/contexts/AdminContext';
-import { LogOut, Plus, Edit, Trash2, ShoppingCart, Package } from 'lucide-react';
+import { LogOut, Plus, Edit, Trash2, ShoppingCart, Package, Upload, ImageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+
+// Import all product images
+import sorghumFlour from "@/assets/sorghum-flour.jpg";
+import sorghumCouscous from "@/assets/sorghum-couscous.jpg";
+import sorghumPasta from "@/assets/sorghum-pasta.jpg";
 
 const AdminProducts = () => {
   const { isAuthenticated, logout, products, addProduct, updateProduct, deleteProduct } = useAdmin();
@@ -19,15 +25,45 @@ const AdminProducts = () => {
     name: '',
     price: '',
     description: '',
-    stock: ''
+    stock: '',
+    category: '',
+    image: '',
+    benefits: '',
+    nutritionalInfo: ''
   });
+
+  const categories = [
+    'Couscous sans gluten',
+    'Farine sans gluten', 
+    'Céréales sans gluten et dérivés',
+    'Céréales et dérivés',
+    'Couscous',
+    'Graines et herbes',
+    'Légumineuses naturelles',
+    'Assaisonnements et Épices'
+  ];
+
+  const availableImages = [
+    { value: sorghumFlour, label: 'Farine de sorgho' },
+    { value: sorghumCouscous, label: 'Couscous de sorgho' },
+    { value: sorghumPasta, label: 'Pâtes de sorgho' }
+  ];
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />;
   }
 
   const resetForm = () => {
-    setFormData({ name: '', price: '', description: '', stock: '' });
+    setFormData({ 
+      name: '', 
+      price: '', 
+      description: '', 
+      stock: '', 
+      category: '',
+      image: '',
+      benefits: '',
+      nutritionalInfo: ''
+    });
     setEditingProduct(null);
   };
 
@@ -38,7 +74,11 @@ const AdminProducts = () => {
       name: formData.name,
       price: parseFloat(formData.price),
       description: formData.description,
-      stock: parseInt(formData.stock)
+      stock: parseInt(formData.stock),
+      category: formData.category,
+      image: formData.image,
+      benefits: formData.benefits ? formData.benefits.split(',').map(b => b.trim()) : [],
+      nutritionalInfo: formData.nutritionalInfo ? formData.nutritionalInfo.split(',').map(n => n.trim()) : []
     };
 
     if (editingProduct) {
@@ -66,7 +106,11 @@ const AdminProducts = () => {
       name: product.name,
       price: product.price.toString(),
       description: product.description,
-      stock: product.stock.toString()
+      stock: product.stock.toString(),
+      category: product.category || '',
+      image: product.image || '',
+      benefits: Array.isArray(product.benefits) ? product.benefits.join(', ') : '',
+      nutritionalInfo: Array.isArray(product.nutritionalInfo) ? product.nutritionalInfo.join(', ') : ''
     });
   };
 
@@ -82,7 +126,7 @@ const AdminProducts = () => {
   };
 
   const ProductForm = () => (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto">
       <div className="space-y-2">
         <Label htmlFor="name">Nom du produit</Label>
         <Input
@@ -93,27 +137,69 @@ const AdminProducts = () => {
         />
       </div>
       
-      <div className="space-y-2">
-        <Label htmlFor="price">Prix (€)</Label>
-        <Input
-          id="price"
-          type="number"
-          step="0.01"
-          value={formData.price}
-          onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-          required
-        />
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="price">Prix (DH)</Label>
+          <Input
+            id="price"
+            type="number"
+            step="0.01"
+            value={formData.price}
+            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+            required
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <Label htmlFor="stock">Stock</Label>
+          <Input
+            id="stock"
+            type="number"
+            value={formData.stock}
+            onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
+            required
+          />
+        </div>
       </div>
-      
+
       <div className="space-y-2">
-        <Label htmlFor="stock">Stock</Label>
-        <Input
-          id="stock"
-          type="number"
-          value={formData.stock}
-          onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-          required
-        />
+        <Label htmlFor="category">Catégorie</Label>
+        <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
+          <SelectTrigger>
+            <SelectValue placeholder="Sélectionner une catégorie" />
+          </SelectTrigger>
+          <SelectContent>
+            {categories.map((category) => (
+              <SelectItem key={category} value={category}>
+                {category}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="image">Image du produit</Label>
+        <Select value={formData.image} onValueChange={(value) => setFormData({ ...formData, image: value })}>
+          <SelectTrigger>
+            <SelectValue placeholder="Sélectionner une image" />
+          </SelectTrigger>
+          <SelectContent>
+            {availableImages.map((img) => (
+              <SelectItem key={img.value} value={img.value}>
+                <div className="flex items-center">
+                  <ImageIcon className="h-4 w-4 mr-2" />
+                  {img.label}
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {formData.image && (
+          <div className="mt-2">
+            <img src={formData.image} alt="Preview" className="w-20 h-20 object-cover rounded" />
+          </div>
+        )}
       </div>
       
       <div className="space-y-2">
@@ -126,7 +212,27 @@ const AdminProducts = () => {
         />
       </div>
 
-      <div className="flex justify-end space-x-2">
+      <div className="space-y-2">
+        <Label htmlFor="benefits">Bienfaits (séparés par des virgules)</Label>
+        <Textarea
+          id="benefits"
+          value={formData.benefits}
+          onChange={(e) => setFormData({ ...formData, benefits: e.target.value })}
+          placeholder="Ex: Riche en fibres, Sans gluten, Source de protéines"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="nutritionalInfo">Informations nutritionnelles (séparées par des virgules)</Label>
+        <Textarea
+          id="nutritionalInfo"
+          value={formData.nutritionalInfo}
+          onChange={(e) => setFormData({ ...formData, nutritionalInfo: e.target.value })}
+          placeholder="Ex: 15g de protéines, 60g de glucides, 5g de lipides"
+        />
+      </div>
+
+      <div className="flex justify-end space-x-2 pt-4">
         <Button type="button" variant="outline" onClick={resetForm}>
           Annuler
         </Button>
@@ -138,13 +244,13 @@ const AdminProducts = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b">
+    <div className="min-h-screen bg-background">
+      <header className="bg-card shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <Package className="h-6 w-6 text-green-600" />
-              <h1 className="text-2xl font-bold text-gray-900">Gestion des Produits</h1>
+              <Package className="h-6 w-6 text-primary" />
+              <h1 className="text-2xl font-bold text-foreground">Gestion des Produits Bio Salim</h1>
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="outline" onClick={() => window.location.href = '/admin/orders'}>
@@ -158,7 +264,7 @@ const AdminProducts = () => {
                     Ajouter un produit
                   </Button>
                 </DialogTrigger>
-                <DialogContent>
+                <DialogContent className="max-w-2xl">
                   <DialogHeader>
                     <DialogTitle>Ajouter un nouveau produit</DialogTitle>
                   </DialogHeader>
@@ -175,18 +281,42 @@ const AdminProducts = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold">Tous les produits ({products.length})</h2>
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {products.map((product) => (
-            <Card key={product.id}>
-              <CardHeader>
-                <CardTitle className="text-lg">{product.name}</CardTitle>
+            <Card key={product.id} className="overflow-hidden">
+              <div className="aspect-square bg-muted">
+                {product.image ? (
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <ImageIcon className="h-12 w-12 text-muted-foreground" />
+                  </div>
+                )}
+              </div>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg line-clamp-1">{product.name}</CardTitle>
                 <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-green-600">{product.price}€</span>
+                  <span className="text-2xl font-bold text-primary">{product.price} DH</span>
                   <span className="text-sm text-muted-foreground">Stock: {product.stock}</span>
                 </div>
+                {product.category && (
+                  <span className="text-xs bg-secondary/20 text-secondary-foreground px-2 py-1 rounded-full">
+                    {product.category}
+                  </span>
+                )}
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">{product.description}</p>
+              <CardContent className="pt-0">
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{product.description}</p>
                 <div className="flex justify-end space-x-2">
                   <Button
                     variant="outline"
@@ -213,13 +343,21 @@ const AdminProducts = () => {
             <CardContent className="text-center py-12">
               <Package className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <p className="text-muted-foreground">Aucun produit trouvé</p>
+              <Button asChild className="mt-4">
+                <Dialog>
+                  <DialogTrigger>
+                    <Plus className="h-4 w-4 mr-2" />
+                    Ajouter votre premier produit
+                  </DialogTrigger>
+                </Dialog>
+              </Button>
             </CardContent>
           </Card>
         )}
 
         {editingProduct && (
           <Dialog open={!!editingProduct} onOpenChange={() => setEditingProduct(null)}>
-            <DialogContent>
+            <DialogContent className="max-w-2xl">
               <DialogHeader>
                 <DialogTitle>Modifier le produit</DialogTitle>
               </DialogHeader>
