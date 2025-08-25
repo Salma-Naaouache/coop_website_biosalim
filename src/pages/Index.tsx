@@ -115,26 +115,21 @@ export default function Index() {
           <div className="container relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative animate-fade-in">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <img 
                     src="/lovable-uploads/8ad1f021-e384-4f84-8f5e-38f1067987ed.png"
                     alt="Témoignages des agriculteurs bénéficiaires" 
-                    className="w-full rounded-xl shadow-lg"
+                    className="w-full aspect-square rounded-xl shadow-lg object-cover"
                   />
                   <img 
                     src="/lovable-uploads/b464aa8e-a650-46a7-a1ff-373a8d6c469a.png"
                     alt="Session de formation Al Moutmir avec les femmes" 
-                    className="w-full rounded-xl shadow-lg"
+                    className="w-full aspect-square rounded-xl shadow-lg object-cover"
                   />
                   <img 
                     src="/lovable-uploads/ebea63e5-80bf-4eb6-a18f-9dc88fa987dc.png"
                     alt="Travail sur le terrain Al Moutmir" 
-                    className="w-full rounded-xl shadow-lg"
-                  />
-                  <img 
-                    src="/lovable-uploads/03145dac-a065-46a7-82ac-35412bb0341c.png"
-                    alt="Rapport d'activité Al Moutmir 2023" 
-                    className="w-full rounded-xl shadow-lg"
+                    className="w-full aspect-square rounded-xl shadow-lg object-cover"
                   />
                 </div>
               </div>

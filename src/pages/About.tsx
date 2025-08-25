@@ -60,8 +60,8 @@ export default function About() {
               
               <div className="relative animate-fade-in [animation-delay:200ms]">
                 <img 
-                  src={ihssanePortrait}
-                  alt="Ihssane Hamoudane, fondatrice de Bio Salim"
+                  src="/lovable-uploads/1fc29e4f-f7af-41d8-8b5d-7f7ea6b754dc.png"
+                  alt="Produits Bio Salim - épices et farines de sorgho"
                   className="w-full rounded-2xl shadow-lg"
                 />
               </div>
