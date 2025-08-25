@@ -131,7 +131,7 @@ export default function About() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative animate-fade-in">
                 <img 
-                  src={alMoutmirTraining}
+                  src="/lovable-uploads/ef81f48f-ae87-409d-af7e-1b6df7379252.png"
                   alt="Partenariat avec Al Moutmir"
                   className="w-full rounded-2xl shadow-lg"
                 />
@@ -171,7 +171,7 @@ export default function About() {
             
             <div className="text-center mb-8">
               <img 
-                src={womenGroup}
+                src="/lovable-uploads/b44e291a-07af-4019-82b3-718dcc1ac534.png"
                 alt="L'équipe de Bio Salim"
                 className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg"
               />

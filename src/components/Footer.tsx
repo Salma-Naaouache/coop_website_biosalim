@@ -32,12 +32,10 @@ export default function Footer() {
             <h4 className="text-xl font-bold mb-4" style={{ color: 'hsl(var(--footer-accent))' }}>{t.footer.quickLinks}</h4>
             <ul className="space-y-2">
               {[
-                { name: t.nav.home, path: "/" },
-                { name: t.nav.apartments, path: "/apartments" },
-                { name: t.nav.amenities, path: "/amenities" },
-                { name: t.nav.gallery, path: "/gallery" },
-                { name: t.nav.contact, path: "/contact" },
-                { name: t.nav.bookNow, path: "/booking" },
+                { name: "Accueil", path: "/" },
+                { name: "À propos", path: "/about" },
+                { name: "Produits", path: "/products" },
+                { name: "Contact", path: "/contact" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link 

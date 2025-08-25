@@ -93,15 +93,15 @@ export default function Index() {
               <div className="relative animate-fade-in [animation-delay:300ms]">
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden">
                   <img 
-                    src={ihssanePortrait}
+                    src="/lovable-uploads/9e3594aa-e6ab-40a0-841f-f7e70d5c8ce9.png"
                     alt="Ihssane Hamoudane et les membres de la coopérative" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 w-1/2 rounded-2xl overflow-hidden shadow-xl">
                   <img 
-                    src={sorghumCloseup}
-                    alt="Épis de sorgho mûrs" 
+                    src="/lovable-uploads/cce82479-4add-4265-9525-93014a978466.png"
+                    alt="Produits Bio Salim" 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -305,7 +305,7 @@ export default function Index() {
             
             <div className="text-center">
               <img 
-                src={womenGroup}
+                src="/lovable-uploads/b44e291a-07af-4019-82b3-718dcc1ac534.png"
                 alt="Groupe des femmes de Bio Salim avec leurs produits"
                 className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg"
               />
