@@ -16,17 +16,17 @@
     --popover: 60 45% 92%; /* #F1F1D3 - Cream */
     --popover-foreground: 79 54% 30%; /* Dark green text */
 
-    --primary: 79 54% 46%; /* #8FB43A - Dark green primary */
-    --primary-foreground: 60 45% 92%; /* #F1F1D3 - Cream text */
+    --primary: 100 45% 35%; /* BioSalim logo green - rich forest green */
+    --primary-foreground: 0 0% 100%; /* Pure white text */
 
-    --secondary: 79 50% 60%; /* #B7CE66 - Medium green secondary */
-    --secondary-foreground: 79 54% 30%; /* Dark green text */
+    --secondary: 100 40% 50%; /* Lighter BioSalim green */
+    --secondary-foreground: 0 0% 100%; /* White text */
 
-    --muted: 79 37% 73%; /* #C8D6A2 - Light green muted */
-    --muted-foreground: 79 54% 30%; /* Dark green text */
+    --muted: 100 25% 75%; /* Very light green muted */
+    --muted-foreground: 100 45% 25%; /* Dark green text */
 
-    --accent: 79 50% 60%; /* #B7CE66 - Medium green accent */
-    --accent-foreground: 79 54% 30%; /* Dark green text */
+    --accent: 100 40% 50%; /* Lighter BioSalim green accent */
+    --accent-foreground: 0 0% 100%; /* White text */
 
     --destructive: 0 85% 60%;
     --destructive-foreground: 60 45% 92%; /* #F1F1D3 */
@@ -37,12 +37,12 @@
 
     --radius: 0.5rem;
 
-    /* Footer Colors - Dark green footer */
-    --footer-bg: 79 54% 46%; /* #8FB43A - Dark green */
-    --footer-text: 60 45% 92%; /* #F1F1D3 - Cream text */
-    --footer-accent: 79 50% 60%; /* #B7CE66 - Medium green */
-    --footer-secondary: 79 37% 73%; /* #C8D6A2 - Light green */
-    --footer-light: 100 15% 86%; /* #DCDFDA - Light grayish green */
+    /* Footer Colors - BioSalim green footer */
+    --footer-bg: 100 45% 35%; /* BioSalim logo green */
+    --footer-text: 0 0% 95%; /* Almost white text */
+    --footer-accent: 0 0% 100%; /* Pure white accents */
+    --footer-secondary: 0 0% 85%; /* Light gray text */
+    --footer-light: 0 0% 75%; /* Medium gray text */
   }
 
   .dark {

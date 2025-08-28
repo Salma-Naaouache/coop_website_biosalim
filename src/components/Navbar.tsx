@@ -38,7 +38,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center">
             <img 
               src="/lovable-uploads/3bd6bd21-eda9-4888-87a8-14ce58d29b1a.png" 
-              alt="Bio Salim" 
+              alt="BioSalim"
               className="h-10 w-auto"
             />
           </Link>
@@ -47,7 +47,7 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-8">
           {navLinks.map(link => <li key={link.name} className="relative">
-              <Link to={link.path} className="font-medium transition-colors hover:text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full">
+              <Link to={link.path} className="font-medium text-white hover:text-white/90 transition-colors after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:w-0 after:bg-white after:transition-all hover:after:w-full">
                 {link.name}
               </Link>
             </li>)}
@@ -104,7 +104,7 @@ export default function Navbar() {
                 <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
                   <img 
                     src="/lovable-uploads/3bd6bd21-eda9-4888-87a8-14ce58d29b1a.png" 
-                    alt="Bio Salim" 
+                    alt="BioSalim" 
                     className="h-8 w-auto"
                   />
                 </Link>

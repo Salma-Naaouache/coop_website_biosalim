@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import heroImage from "@/assets/hero-chefchaouen-mountains.jpg";
+// Using uploaded Chefchaouen image
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -28,7 +28,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${heroImage})`,
+          backgroundImage: `url(/lovable-uploads/8f9c88c0-2895-4466-bcc0-df1d2240d480.png)`,
           transform: `translateY(${backgroundY}px)`,
           backgroundPosition: `center ${50 + scrollY * 0.05}%`
         }}
@@ -43,14 +43,14 @@ export default function HeroSection() {
         style={{ transform: `translateY(${contentY}px)` }}
       >
         <div className="max-w-3xl animate-fade-in">
-          <span className="inline-block text-white/90 text-lg mb-4 tracking-wide border-b border-white/30 pb-2">
-            Coopérative Bio Salim
+          <span className="inline-block text-white text-lg md:text-xl mb-4 tracking-wide border-b-2 border-white/40 pb-2 font-semibold bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+            Coopérative BioSalim
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Ensemble, nous cultivons l'avenir
           </h1>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Dans les montagnes verdoyantes de Chefchaouen, plus de 30 femmes rurales unissent leur savoir-faire pour produire des aliments sains à base de sorgho. Plus qu'une coopérative, Bio Salim est une histoire de solidarité, de résilience et d'espoir.
+            Dans les montagnes verdoyantes de Chefchaouen, plus de 30 femmes rurales unissent leur savoir-faire pour produire des aliments sains à base de sorgho. Plus qu'une coopérative, BioSalim est une histoire de solidarité, de résilience et d'espoir.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" variant="heroSolid" className="min-w-[200px] rounded-full transform transition-all duration-300 hover:translate-y-[-2px]">

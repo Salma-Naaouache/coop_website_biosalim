@@ -12,9 +12,9 @@ export default function Footer() {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div className="animate-fade-in [animation-delay:100ms]">
-            <h4 className="text-xl font-bold mb-4" style={{ color: 'hsl(var(--footer-accent))' }}>Bio Salim</h4>
+            <h4 className="text-xl font-bold mb-4" style={{ color: 'hsl(var(--footer-accent))' }}>BioSalim</h4>
             <p className="text-muted-foreground mb-4">
-              À la découverte des saveurs locales ! La Coopérative Bio Salim met à l'honneur les trésors naturels de son terroir. Découvrez notre sélection premium d'épices, de céréales, d'herbes aromatiques et de couscous, cultivés et transformés dans le respect de la tradition.
+              À la découverte des saveurs locales ! La Coopérative BioSalim met à l'honneur les trésors naturels de son terroir. Découvrez notre sélection premium d'épices, de céréales, d'herbes aromatiques et de couscous, cultivés et transformés dans le respect de la tradition.
             </p>
             <div className="flex space-x-4">
               <a href="https://www.facebook.com/profile.php?id=100083422935004&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity" style={{ color: 'hsl(var(--footer-accent))' }}>
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white/20 pt-8 mt-8 text-center opacity-70">
-          <p>&copy; {currentYear} Bio Salim. {t.footer.allRights}</p>
+          <p>&copy; {currentYear} BioSalim. {t.footer.allRights}</p>
         </div>
       </div>
     </footer>

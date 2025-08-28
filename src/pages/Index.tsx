@@ -57,13 +57,13 @@ export default function Index() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="animate-fade-in [animation-delay:100ms]">
                 <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                  Bio Salim
+                BioSalim
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
                   Notre mission
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  Chez Bio Salim, notre mission dépasse la simple production agricole. Nous œuvrons pour :
+                  Chez BioSalim, notre mission dépasse la simple production agricole. Nous œuvrons pour :
                 </p>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
@@ -101,7 +101,7 @@ export default function Index() {
                 <div className="absolute -bottom-6 -right-6 w-1/2 rounded-2xl overflow-hidden shadow-xl">
                   <img 
                     src="/lovable-uploads/cce82479-4add-4265-9525-93014a978466.png"
-                    alt="Produits Bio Salim" 
+                    alt="Produits BioSalim" 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -148,13 +148,13 @@ export default function Index() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    La coopérative Bio Salim n'aurait pas atteint son plein potentiel sans l'appui de l'initiative Al Moutmir, un programme dédié à soutenir les initiatives locales à fort impact social. Dès le départ, nous avons rencontré des défis, et leur accompagnement a transformé ces obstacles en opportunités concrètes.
+                    La coopérative BioSalim n'aurait pas atteint son plein potentiel sans l'appui de l'initiative Al Moutmir, un programme dédié à soutenir les initiatives locales à fort impact social. Dès le départ, nous avons rencontré des défis, et leur accompagnement a transformé ces obstacles en opportunités concrètes.
                   </p>
                   <p>
                     Grâce à Al Moutmir, nous avons bénéficié de formations techniques, appris à structurer notre coopérative et améliorer la qualité de nos produits. Les femmes ont ainsi développé leurs compétences et renforcé leur confiance en elles.
                   </p>
                   <p>
-                    Le programme nous a également guidés pour commercialiser nos produits et utiliser des plateformes digitales afin d'atteindre de nouveaux marchés. Cet appui a été essentiel pour faire de Bio Salim un modèle de développement rural durable.
+                    Le programme nous a également guidés pour commercialiser nos produits et utiliser des plateformes digitales afin d'atteindre de nouveaux marchés. Cet appui a été essentiel pour faire de BioSalim un modèle de développement rural durable.
                   </p>
                 </div>
                 <blockquote className="mt-8 p-6 bg-white dark:bg-card rounded-lg border-l-4 border-primary shadow-md">
@@ -189,7 +189,7 @@ export default function Index() {
                   width="100%" 
                   height="100%" 
                   src="https://www.youtube.com/embed/0XfUlMc1r14?si=U8s9H_j6CS3Hij8L" 
-                  title="Rencontre avec Ihssane Hamoudane - Fondatrice Bio Salim" 
+                  title="Rencontre avec Ihssane Hamoudane - Fondatrice BioSalim" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   referrerPolicy="strict-origin-when-cross-origin" 
@@ -202,7 +202,7 @@ export default function Index() {
                 <blockquote className="text-lg italic text-muted-foreground mb-4">
                   "Notre mission va au-delà de la production : c'est transformer des vies et préserver notre patrimoine agricole."
                 </blockquote>
-                <cite className="text-primary font-semibold">— Ihssane Hamoudane, Fondatrice de Bio Salim</cite>
+                <cite className="text-primary font-semibold">— Ihssane Hamoudane, Fondatrice de BioSalim</cite>
               </div>
             </div>
           </div>
@@ -245,7 +245,7 @@ export default function Index() {
             
             <div className="text-center">
               <blockquote className="text-lg italic text-muted-foreground mb-6 max-w-2xl mx-auto">
-                "Chaque produit que nous créons porte l'amour, le savoir-faire et la force des femmes de Bio Salim."
+                "Chaque produit que nous créons porte l'amour, le savoir-faire et la force des femmes de BioSalim."
               </blockquote>
               <Button asChild className="btn-primary">
                 <Link to="/products">
@@ -306,7 +306,7 @@ export default function Index() {
             <div className="text-center">
               <img 
                 src="/lovable-uploads/b44e291a-07af-4019-82b3-718dcc1ac534.png"
-                alt="Groupe des femmes de Bio Salim avec leurs produits"
+                alt="Groupe des femmes de BioSalim avec leurs produits"
                 className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg"
               />
             </div>
@@ -321,7 +321,7 @@ export default function Index() {
                 Rejoignez notre mission
               </h2>
               <p className="text-muted-foreground mb-8">
-                Découvrez comment vous pouvez soutenir Bio Salim et contribuer à l'autonomisation des femmes rurales de Chefchaouen.
+                Découvrez comment vous pouvez soutenir BioSalim et contribuer à l'autonomisation des femmes rurales de Chefchaouen.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="btn-primary">
