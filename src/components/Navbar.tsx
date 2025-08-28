@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
-import ThemeToggle from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import CartModal from "./CartModal";
@@ -67,7 +66,6 @@ export default function Navbar() {
               </span>
             )}
           </Button>
-          <ThemeToggle />
           <Button asChild className="btn-primary">
             <Link to="/contact">Nous contacter</Link>
           </Button>
@@ -88,7 +86,6 @@ export default function Navbar() {
               </span>
             )}
           </Button>
-          <ThemeToggle />
           <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="rounded-full">
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>

@@ -43,12 +43,22 @@ export default function HeroSection() {
         style={{ transform: `translateY(${contentY}px)` }}
       >
         <div className="max-w-3xl animate-fade-in">
-          <span className="inline-block text-white text-lg md:text-xl mb-4 tracking-wide border-b-2 border-white/40 pb-2 font-semibold bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-            Coopérative BioSalim
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Ensemble, nous cultivons l'avenir
+          <div className="inline-flex items-center space-x-3 text-white mb-6">
+            <div className="w-12 h-0.5 bg-white/60"></div>
+            <span className="text-lg md:text-xl font-light tracking-widest uppercase">
+              Coopérative
+            </span>
+            <div className="w-12 h-0.5 bg-white/60"></div>
+          </div>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2">
+            <span className="bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent">
+              BioSalim
+            </span>
           </h1>
+          <div className="w-24 h-1 bg-white/80 mx-auto mb-8"></div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            Ensemble, nous cultivons l'avenir
+          </h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
             Dans les montagnes verdoyantes de Chefchaouen, plus de 30 femmes rurales unissent leur savoir-faire pour produire des aliments sains à base de sorgho. Plus qu'une coopérative, BioSalim est une histoire de solidarité, de résilience et d'espoir.
           </p>

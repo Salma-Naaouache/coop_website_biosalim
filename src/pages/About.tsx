@@ -21,18 +21,28 @@ export default function About() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-r from-primary/5 to-white dark:from-primary/10 dark:to-background overflow-hidden">
+        <section className="relative py-20 overflow-hidden">
           <div className="container relative z-10 pt-20">
-            <div className="text-center max-w-3xl mx-auto">
-              <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                Bio Salim
-              </span>
-              <h1 className="text-4xl md:text-5xl font-bold mt-2 mb-6">
-                À propos de nous
-              </h1>
-              <p className="text-muted-foreground text-lg">
-                Découvrez l'histoire inspirante de Bio Salim, une coopérative qui transforme la vie des femmes rurales de Chefchaouen.
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="animate-fade-in">
+                <img 
+                  src="/lovable-uploads/6c4adcf3-751c-48a8-8678-705876a83220.png"
+                  alt="Agro Chaouen - BioSalim"
+                  className="w-full max-w-md mx-auto lg:mx-0 rounded-2xl shadow-lg"
+                />
+              </div>
+              
+              <div className="text-center lg:text-left animate-fade-in [animation-delay:200ms]">
+                <span className="text-sm text-primary font-medium uppercase tracking-wider">
+                  BioSalim
+                </span>
+                <h1 className="text-4xl md:text-5xl font-bold mt-2 mb-6">
+                  À propos de nous
+                </h1>
+                <p className="text-muted-foreground text-lg">
+                  Découvrez l'histoire inspirante de BioSalim, une coopérative qui transforme la vie des femmes rurales de Chefchaouen.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -47,7 +57,7 @@ export default function About() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Bio Salim a vu le jour dans les montagnes verdoyantes de Chefchaouen, portée par la vision d'Ihssane Hamoudane et de femmes rurales déterminées à changer leur destin. Face aux défis économiques et sociaux, elles ont uni leurs forces pour créer quelque chose d'extraordinaire.
+                    BioSalim a vu le jour dans les montagnes verdoyantes de Chefchaouen, portée par la vision d'Ihssane Hamoudane et de femmes rurales déterminées à changer leur destin. Face aux défis économiques et sociaux, elles ont uni leurs forces pour créer quelque chose d'extraordinaire.
                   </p>
                   <p>
                     Ce qui a commencé comme un rêve de quelques femmes courageuses est devenu une coopérative florissante qui emploie aujourd'hui plus de 30 femmes rurales. Chaque jour, elles transforment le sorgho local en produits de qualité, préservant les traditions tout en embrassant l'innovation.
@@ -61,7 +71,7 @@ export default function About() {
               <div className="relative animate-fade-in [animation-delay:200ms]">
                 <img 
                   src="/lovable-uploads/1fc29e4f-f7af-41d8-8b5d-7f7ea6b754dc.png"
-                  alt="Produits Bio Salim - épices et farines de sorgho"
+                  alt="Produits BioSalim - épices et farines de sorgho"
                   className="w-full rounded-2xl shadow-lg"
                 />
               </div>
@@ -165,21 +175,21 @@ export default function About() {
                 Notre équipe
               </h2>
               <p className="text-muted-foreground">
-                Plus de 30 femmes talentueuses qui donnent vie à Bio Salim chaque jour.
+                Plus de 30 femmes talentueuses qui donnent vie à BioSalim chaque jour.
               </p>
             </div>
             
             <div className="text-center mb-8">
               <img 
                 src="/lovable-uploads/b44e291a-07af-4019-82b3-718dcc1ac534.png"
-                alt="L'équipe de Bio Salim"
+                alt="L'équipe de BioSalim"
                 className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg"
               />
             </div>
             
             <div className="text-center">
               <p className="text-lg text-muted-foreground mb-6 max-w-3xl mx-auto">
-                Chaque membre de notre équipe apporte sa passion, son savoir-faire et sa détermination pour faire de Bio Salim une réussite collective. Ensemble, nous cultivons non seulement le sorgho, mais aussi l'espoir et l'avenir.
+                Chaque membre de notre équipe apporte sa passion, son savoir-faire et sa détermination pour faire de BioSalim une réussite collective. Ensemble, nous cultivons non seulement le sorgho, mais aussi l'espoir et l'avenir.
               </p>
               <Button asChild className="btn-primary">
                 <Link to="/contact">
