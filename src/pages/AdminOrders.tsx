@@ -66,11 +66,19 @@ const AdminOrders = () => {
                   <div>
                     <CardTitle className="text-lg">Commande #{order.id}</CardTitle>
                     <p className="text-muted-foreground">
-                      {order.customerName} - {order.customerEmail}
+                      {order.customerName} - {order.customerPhone}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {order.customerAddress}
                     </p>
                     <p className="text-sm text-muted-foreground">
                       {new Date(order.date).toLocaleDateString('fr-FR')}
                     </p>
+                    {order.customerNotes && (
+                      <p className="text-sm text-muted-foreground italic">
+                        Note: {order.customerNotes}
+                      </p>
+                    )}
                   </div>
                   <Badge className={getStatusColor(order.status)}>
                     {order.status}
@@ -85,16 +93,16 @@ const AdminOrders = () => {
                       {order.items.map((item, index) => (
                         <div key={index} className="flex justify-between items-center py-2 border-b last:border-b-0">
                           <span>{item.productName}</span>
-                          <span className="text-muted-foreground">
-                            {item.quantity} × {item.price}€ = {item.quantity * item.price}€
-                          </span>
+                           <span className="text-muted-foreground">
+                             {item.quantity} × {item.price} DH = {item.quantity * item.price} DH
+                           </span>
                         </div>
                       ))}
                     </div>
                   </div>
                   
                   <div className="flex justify-between items-center pt-2 border-t">
-                    <span className="font-bold text-lg">Total: {order.totalPrice}€</span>
+                    <span className="font-bold text-lg">Total: {order.totalPrice} DH</span>
                     <div className="flex items-center space-x-2">
                       <span className="text-sm text-muted-foreground">Statut:</span>
                       <Select

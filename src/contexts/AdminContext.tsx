@@ -21,7 +21,9 @@ interface Product {
 interface Order {
   id: string;
   customerName: string;
-  customerEmail: string;
+  customerPhone: string;
+  customerAddress: string;
+  customerNotes?: string;
   items: Array<{
     productId: string;
     productName: string;
@@ -43,6 +45,7 @@ interface AdminContextType {
   updateProduct: (id: string, product: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
   updateOrderStatus: (id: string, status: Order['status']) => void;
+  addOrder: (order: Omit<Order, 'id' | 'date' | 'status'>) => void;
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
@@ -92,7 +95,8 @@ const SAMPLE_ORDERS: Order[] = [
   {
     id: '1',
     customerName: 'Sarah Benali',
-    customerEmail: 'sarah@example.com',
+    customerPhone: '0612345678',
+    customerAddress: 'Rue Mohammed V, Chefchaouen',
     items: [
       { productId: '1', productName: 'Farine de sorgho', quantity: 2, price: 25 }
     ],
@@ -103,7 +107,8 @@ const SAMPLE_ORDERS: Order[] = [
   {
     id: '2',
     customerName: 'Ahmed Mansouri',
-    customerEmail: 'ahmed@example.com',
+    customerPhone: '0687654321',
+    customerAddress: 'Avenue Hassan II, Chefchaouen',
     items: [
       { productId: '2', productName: 'Couscous de sorgho', quantity: 1, price: 30 },
       { productId: '3', productName: 'Pâtes artisanales au sorgho', quantity: 1, price: 28 }
@@ -190,6 +195,18 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem('biosalim_orders', JSON.stringify(updatedOrders));
   };
 
+  const addOrder = (orderData: Omit<Order, 'id' | 'date' | 'status'>) => {
+    const newOrder: Order = {
+      ...orderData,
+      id: Date.now().toString(),
+      status: 'Pending',
+      date: new Date().toISOString()
+    };
+    const updatedOrders = [...orders, newOrder];
+    setOrders(updatedOrders);
+    localStorage.setItem('biosalim_orders', JSON.stringify(updatedOrders));
+  };
+
   return (
     <AdminContext.Provider value={{
       isAuthenticated,
@@ -200,7 +217,8 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       addProduct,
       updateProduct,
       deleteProduct,
-      updateOrderStatus
+      updateOrderStatus,
+      addOrder
     }}>
       {children}
     </AdminContext.Provider>

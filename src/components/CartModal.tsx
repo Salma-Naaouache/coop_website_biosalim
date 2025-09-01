@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useCart } from '@/contexts/CartContext';
+import { useAdmin } from '@/contexts/AdminContext';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,6 +16,7 @@ interface CartModalProps {
 
 export default function CartModal({ isOpen, onClose }: CartModalProps) {
   const { items, updateQuantity, removeFromCart, getTotalPrice, clearCart } = useCart();
+  const { addOrder } = useAdmin();
   const [showCheckout, setShowCheckout] = useState(false);
   const [orderForm, setOrderForm] = useState({
     name: '',
@@ -35,7 +37,24 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       return;
     }
 
-    // Simulate order submission
+    // Create order from cart items
+    const orderItems = items.map(item => ({
+      productId: item.id,
+      productName: item.name,
+      quantity: item.quantity,
+      price: item.price
+    }));
+
+    // Add order to admin system
+    addOrder({
+      customerName: orderForm.name,
+      customerPhone: orderForm.phone,
+      customerAddress: orderForm.address,
+      customerNotes: orderForm.notes,
+      items: orderItems,
+      totalPrice: getTotalPrice()
+    });
+
     toast.success('Commande envoyée avec succès! Nous vous contacterons bientôt.');
     clearCart();
     setShowCheckout(false);
