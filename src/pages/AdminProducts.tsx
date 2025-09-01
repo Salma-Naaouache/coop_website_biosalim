@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,6 +19,7 @@ import sorghumPasta from "@/assets/sorghum-pasta.jpg";
 const AdminProducts = () => {
   const { isAuthenticated, logout, products, addProduct, updateProduct, deleteProduct } = useAdmin();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<any>(null);
   const [formData, setFormData] = useState({
@@ -253,7 +254,7 @@ const AdminProducts = () => {
               <h1 className="text-2xl font-bold text-foreground">Gestion des Produits Bio Salim</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="outline" onClick={() => window.location.href = '/admin/orders'}>
+              <Button variant="outline" onClick={() => navigate('/admin/orders')}>
                 <ShoppingCart className="h-4 w-4 mr-2" />
                 Commandes
               </Button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 const AdminOrders = () => {
   const { isAuthenticated, logout, orders, updateOrderStatus } = useAdmin();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />;
@@ -44,7 +45,7 @@ const AdminOrders = () => {
               <h1 className="text-2xl font-bold text-gray-900">Gestion des Commandes</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="outline" onClick={() => window.location.href = '/admin/products'}>
+              <Button variant="outline" onClick={() => navigate('/admin/products')}>
                 <Package className="h-4 w-4 mr-2" />
                 Produits
               </Button>
