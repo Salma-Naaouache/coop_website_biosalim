@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,11 +10,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useAdmin } from '@/contexts/AdminContext';
 import { LogOut, Plus, Edit, Trash2, ShoppingCart, Package, ImageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/supabaseClient';
 
 const AdminProducts = () => {
-  const { isAuthenticated, logout, products, addProduct, updateProduct, deleteProduct } = useAdmin();
+  const { isAuthenticated, logout } = useAdmin();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<any>(null);
   const [formData, setFormData] = useState({
@@ -42,6 +45,100 @@ const AdminProducts = () => {
     return <Navigate to="/admin/login" replace />;
   }
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('produits')
+        .select('*')
+        .order('id', { ascending: true });
+
+      if (error) throw error;
+      setProducts(data || []);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de charger les produits",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addProduct = async (productData: any) => {
+    try {
+      const { data, error } = await supabase
+        .from('produits')
+        .insert([productData])
+        .select()
+        .single();
+
+      if (error) throw error;
+      
+      setProducts([...products, data]);
+      return data;
+    } catch (error) {
+      console.error('Error adding product:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible d'ajouter le produit",
+        variant: "destructive",
+      });
+      throw error;
+    }
+  };
+
+  const updateProduct = async (id: number, productData: any) => {
+    try {
+      const { data, error } = await supabase
+        .from('produits')
+        .update(productData)
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      
+      setProducts(products.map(p => p.id === id ? data : p));
+      return data;
+    } catch (error) {
+      console.error('Error updating product:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de mettre à jour le produit",
+        variant: "destructive",
+      });
+      throw error;
+    }
+  };
+
+  const deleteProduct = async (id: number) => {
+    try {
+      const { error } = await supabase
+        .from('produits')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+      
+      setProducts(products.filter(p => p.id !== id));
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de supprimer le produit",
+        variant: "destructive",
+      });
+      throw error;
+    }
+  };
+
   const resetForm = () => {
     setFormData({ 
       nom: '', 
@@ -55,35 +152,39 @@ const AdminProducts = () => {
     setEditingProduct(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     const productData = {
       nom: formData.nom,
-      prix: parseFloat(formData.prix),
+      prix: parseInt(formData.prix),
       description: formData.description,
       quantité: formData.quantité,
       categorie: formData.categorie,
       image_url: formData.image_url
     };
 
-    if (editingProduct) {
-      updateProduct(editingProduct.id, productData);
-      toast({
-        title: "Produit mis à jour",
-        description: `${productData.nom} a été mis à jour avec succès`,
-      });
-      setEditingProduct(null);
-    } else {
-      addProduct(productData);
-      toast({
-        title: "Produit ajouté",
-        description: `${productData.nom} a été ajouté avec succès`,
-      });
-      setIsAddDialogOpen(false);
+    try {
+      if (editingProduct) {
+        await updateProduct(editingProduct.id, productData);
+        toast({
+          title: "Produit mis à jour",
+          description: `${productData.nom} a été mis à jour avec succès`,
+        });
+        setEditingProduct(null);
+      } else {
+        await addProduct(productData);
+        toast({
+          title: "Produit ajouté",
+          description: `${productData.nom} a été ajouté avec succès`,
+        });
+        setIsAddDialogOpen(false);
+      }
+      
+      resetForm();
+    } catch (error) {
+      // Error already handled in the functions above
     }
-    
-    resetForm();
   };
 
   const handleEdit = (product: any) => {
@@ -91,21 +192,25 @@ const AdminProducts = () => {
     setFormData({
       nom: product.nom,
       prix: product.prix.toString(),
-      description: product.description,
-      quantité: product.quantité.toString(),
+      description: product.description || '',
+      quantité: product.quantité || '',
       categorie: product.categorie || '',
       image_url: product.image_url || ''
     });
   };
 
-  const handleDelete = (product: any) => {
+  const handleDelete = async (product: any) => {
     if (window.confirm(`Êtes-vous sûr de vouloir supprimer ${product.nom}?`)) {
-      deleteProduct(product.id);
-      toast({
-        title: "Produit supprimé",
-        description: `${product.nom} a été supprimé`,
-        variant: "destructive",
-      });
+      try {
+        await deleteProduct(product.id);
+        toast({
+          title: "Produit supprimé",
+          description: `${product.nom} a été supprimé`,
+          variant: "destructive",
+        });
+      } catch (error) {
+        // Error already handled in deleteProduct function
+      }
     }
   };
 
@@ -137,7 +242,6 @@ const AdminProducts = () => {
           <Input
             id="prix"
             type="number"
-            step="0.01"
             value={formData.prix}
             onChange={(e) => setFormData({ ...formData, prix: e.target.value })}
             required
@@ -181,6 +285,15 @@ const AdminProducts = () => {
             onChange={handleImageUpload}
             className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
           />
+          <div className="space-y-2">
+            <Label htmlFor="image_url">Ou URL de l'image</Label>
+            <Input
+              id="image_url"
+              value={formData.image_url}
+              onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+              placeholder="https://exemple.com/image.jpg"
+            />
+          </div>
           {formData.image_url && (
             <div className="mt-2">
               <img src={formData.image_url} alt="Preview" className="w-20 h-20 object-cover rounded" />
@@ -195,7 +308,6 @@ const AdminProducts = () => {
           id="description"
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-          required
         />
       </div>
 
@@ -209,6 +321,17 @@ const AdminProducts = () => {
       </div>
     </form>
   );
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Chargement des produits...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -310,14 +433,20 @@ const AdminProducts = () => {
             <CardContent className="text-center py-12">
               <Package className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <p className="text-muted-foreground">Aucun produit trouvé</p>
-              <Button asChild className="mt-4">
-                <Dialog>
-                  <DialogTrigger>
+              <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="mt-4">
                     <Plus className="h-4 w-4 mr-2" />
                     Ajouter votre premier produit
-                  </DialogTrigger>
-                </Dialog>
-              </Button>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle>Ajouter un nouveau produit</DialogTitle>
+                  </DialogHeader>
+                  <ProductForm />
+                </DialogContent>
+              </Dialog>
             </CardContent>
           </Card>
         )}
