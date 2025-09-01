@@ -8,14 +8,12 @@ interface Admin {
 
 interface Product {
   id: string;
-  name: string;
-  price: number;
+  nom: string;
+  prix: number;
   description: string;
-  stock: number;
-  image?: string;
-  category?: string;
-  benefits?: string[];
-  nutritionalInfo?: string[];
+  quantité: string;
+  image_url?: string;
+  categorie?: string;
 }
 
 interface Order {
@@ -28,7 +26,7 @@ interface Order {
     productId: string;
     productName: string;
     quantity: number;
-    price: number;
+    prix: number;
   }>;
   totalPrice: number;
   status: 'Pending' | 'Paid' | 'Shipped' | 'Delivered';
@@ -61,33 +59,27 @@ const DEFAULT_ADMIN: Admin = {
 const SAMPLE_PRODUCTS: Product[] = [
   {
     id: '1',
-    name: 'Farine de sorgho',
-    price: 25,
+    nom: 'Farine de sorgho',
+    prix: 25,
     description: 'Farine de sorgho bio cultivée dans les montagnes de Chefchaouen',
-    stock: 50,
-    category: 'Farine sans gluten',
-    benefits: ['Riche en fibres', 'Sans gluten', 'Source de protéines'],
-    nutritionalInfo: ['15g de protéines pour 100g', '5g de fibres pour 100g']
+    quantité: '50',
+    categorie: 'Farine sans gluten'
   },
   {
     id: '2',
-    name: 'Couscous de sorgho',
-    price: 30,
+    nom: 'Couscous de sorgho',
+    prix: 30,
     description: 'Couscous traditionnel à base de sorgho, savoureux et nutritif',
-    stock: 35,
-    category: 'Couscous sans gluten',
-    benefits: ['Sans gluten', 'Riche en minéraux', 'Facile à digérer'],
-    nutritionalInfo: ['12g de protéines pour 100g', '8g de fibres pour 100g']
+    quantité: '35',
+    categorie: 'Couscous sans gluten'
   },
   {
     id: '3',
-    name: 'Pâtes artisanales au sorgho',
-    price: 28,
-    description: 'Pâtes artisanales fabriquées avec amour par les femmes de Bio Salim',
-    stock: 40,
-    category: 'Céréales sans gluten et dérivés',
-    benefits: ['Artisanal', 'Sans gluten', 'Cuisson rapide'],
-    nutritionalInfo: ['14g de protéines pour 100g', '3g de fibres pour 100g']
+    nom: 'Pâtes artisanales au sorgho',
+    prix: 28,
+    description: 'Pâtes artisanales fabriquées avec amour par les femmes de BioSalim',
+    quantité: '40',
+    categorie: 'Céréales sans gluten et dérivés'
   }
 ];
 
@@ -98,7 +90,7 @@ const SAMPLE_ORDERS: Order[] = [
     customerPhone: '0612345678',
     customerAddress: 'Rue Mohammed V, Chefchaouen',
     items: [
-      { productId: '1', productName: 'Farine de sorgho', quantity: 2, price: 25 }
+      { productId: '1', productName: 'Farine de sorgho', quantity: 2, prix: 25 }
     ],
     totalPrice: 50,
     status: 'Pending',
@@ -110,8 +102,8 @@ const SAMPLE_ORDERS: Order[] = [
     customerPhone: '0687654321',
     customerAddress: 'Avenue Hassan II, Chefchaouen',
     items: [
-      { productId: '2', productName: 'Couscous de sorgho', quantity: 1, price: 30 },
-      { productId: '3', productName: 'Pâtes artisanales au sorgho', quantity: 1, price: 28 }
+      { productId: '2', productName: 'Couscous de sorgho', quantity: 1, prix: 30 },
+      { productId: '3', productName: 'Pâtes artisanales au sorgho', quantity: 1, prix: 28 }
     ],
     totalPrice: 58,
     status: 'Paid',

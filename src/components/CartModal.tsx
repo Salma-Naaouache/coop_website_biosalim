@@ -42,7 +42,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       productId: item.id,
       productName: item.name,
       quantity: item.quantity,
-      price: item.price
+      prix: item.price
     }));
 
     // Add order to admin system

@@ -8,13 +8,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAdmin } from '@/contexts/AdminContext';
-import { LogOut, Plus, Edit, Trash2, ShoppingCart, Package, Upload, ImageIcon } from 'lucide-react';
+import { LogOut, Plus, Edit, Trash2, ShoppingCart, Package, ImageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
-// Import all product images
-import sorghumFlour from "@/assets/sorghum-flour.jpg";
-import sorghumCouscous from "@/assets/sorghum-couscous.jpg";
-import sorghumPasta from "@/assets/sorghum-pasta.jpg";
 
 const AdminProducts = () => {
   const { isAuthenticated, logout, products, addProduct, updateProduct, deleteProduct } = useAdmin();
@@ -23,15 +18,14 @@ const AdminProducts = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<any>(null);
   const [formData, setFormData] = useState({
-    name: '',
-    price: '',
+    nom: '',
+    prix: '',
     description: '',
-    stock: '',
-    category: '',
-    image: '',
-    benefits: '',
-    nutritionalInfo: ''
+    quantité: '',
+    categorie: '',
+    image_url: ''
   });
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const categories = [
     'Couscous sans gluten',
@@ -44,27 +38,20 @@ const AdminProducts = () => {
     'Assaisonnements et Épices'
   ];
 
-  const availableImages = [
-    { value: sorghumFlour, label: 'Farine de sorgho' },
-    { value: sorghumCouscous, label: 'Couscous de sorgho' },
-    { value: sorghumPasta, label: 'Pâtes de sorgho' }
-  ];
-
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />;
   }
 
   const resetForm = () => {
     setFormData({ 
-      name: '', 
-      price: '', 
+      nom: '', 
+      prix: '', 
       description: '', 
-      stock: '', 
-      category: '',
-      image: '',
-      benefits: '',
-      nutritionalInfo: ''
+      quantité: '', 
+      categorie: '',
+      image_url: ''
     });
+    setImageFile(null);
     setEditingProduct(null);
   };
 
@@ -72,28 +59,26 @@ const AdminProducts = () => {
     e.preventDefault();
     
     const productData = {
-      name: formData.name,
-      price: parseFloat(formData.price),
+      nom: formData.nom,
+      prix: parseFloat(formData.prix),
       description: formData.description,
-      stock: parseInt(formData.stock),
-      category: formData.category,
-      image: formData.image,
-      benefits: formData.benefits ? formData.benefits.split(',').map(b => b.trim()) : [],
-      nutritionalInfo: formData.nutritionalInfo ? formData.nutritionalInfo.split(',').map(n => n.trim()) : []
+      quantité: formData.quantité,
+      categorie: formData.categorie,
+      image_url: formData.image_url
     };
 
     if (editingProduct) {
       updateProduct(editingProduct.id, productData);
       toast({
         title: "Produit mis à jour",
-        description: `${productData.name} a été mis à jour avec succès`,
+        description: `${productData.nom} a été mis à jour avec succès`,
       });
       setEditingProduct(null);
     } else {
       addProduct(productData);
       toast({
         title: "Produit ajouté",
-        description: `${productData.name} a été ajouté avec succès`,
+        description: `${productData.nom} a été ajouté avec succès`,
       });
       setIsAddDialogOpen(false);
     }
@@ -104,68 +89,75 @@ const AdminProducts = () => {
   const handleEdit = (product: any) => {
     setEditingProduct(product);
     setFormData({
-      name: product.name,
-      price: product.price.toString(),
+      nom: product.nom,
+      prix: product.prix.toString(),
       description: product.description,
-      stock: product.stock.toString(),
-      category: product.category || '',
-      image: product.image || '',
-      benefits: Array.isArray(product.benefits) ? product.benefits.join(', ') : '',
-      nutritionalInfo: Array.isArray(product.nutritionalInfo) ? product.nutritionalInfo.join(', ') : ''
+      quantité: product.quantité.toString(),
+      categorie: product.categorie || '',
+      image_url: product.image_url || ''
     });
   };
 
   const handleDelete = (product: any) => {
-    if (window.confirm(`Êtes-vous sûr de vouloir supprimer ${product.name}?`)) {
+    if (window.confirm(`Êtes-vous sûr de vouloir supprimer ${product.nom}?`)) {
       deleteProduct(product.id);
       toast({
         title: "Produit supprimé",
-        description: `${product.name} a été supprimé`,
+        description: `${product.nom} a été supprimé`,
         variant: "destructive",
       });
+    }
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+      // Create a URL for preview
+      const imageUrl = URL.createObjectURL(file);
+      setFormData({ ...formData, image_url: imageUrl });
     }
   };
 
   const ProductForm = () => (
     <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto">
       <div className="space-y-2">
-        <Label htmlFor="name">Nom du produit</Label>
+        <Label htmlFor="nom">Nom du produit</Label>
         <Input
-          id="name"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          id="nom"
+          value={formData.nom}
+          onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
           required
         />
       </div>
       
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="price">Prix (DH)</Label>
+          <Label htmlFor="prix">Prix (DH)</Label>
           <Input
-            id="price"
+            id="prix"
             type="number"
             step="0.01"
-            value={formData.price}
-            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+            value={formData.prix}
+            onChange={(e) => setFormData({ ...formData, prix: e.target.value })}
             required
           />
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="stock">Stock</Label>
+          <Label htmlFor="quantité">Quantité</Label>
           <Input
-            id="stock"
-            type="number"
-            value={formData.stock}
-            onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
+            id="quantité"
+            value={formData.quantité}
+            onChange={(e) => setFormData({ ...formData, quantité: e.target.value })}
             required
           />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="category">Catégorie</Label>
-        <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
+        <Label htmlFor="categorie">Catégorie</Label>
+        <Select value={formData.categorie} onValueChange={(value) => setFormData({ ...formData, categorie: value })}>
           <SelectTrigger>
             <SelectValue placeholder="Sélectionner une catégorie" />
           </SelectTrigger>
@@ -181,26 +173,20 @@ const AdminProducts = () => {
 
       <div className="space-y-2">
         <Label htmlFor="image">Image du produit</Label>
-        <Select value={formData.image} onValueChange={(value) => setFormData({ ...formData, image: value })}>
-          <SelectTrigger>
-            <SelectValue placeholder="Sélectionner une image" />
-          </SelectTrigger>
-          <SelectContent>
-            {availableImages.map((img) => (
-              <SelectItem key={img.value} value={img.value}>
-                <div className="flex items-center">
-                  <ImageIcon className="h-4 w-4 mr-2" />
-                  {img.label}
-                </div>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {formData.image && (
-          <div className="mt-2">
-            <img src={formData.image} alt="Preview" className="w-20 h-20 object-cover rounded" />
-          </div>
-        )}
+        <div className="space-y-2">
+          <Input
+            id="image"
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+          />
+          {formData.image_url && (
+            <div className="mt-2">
+              <img src={formData.image_url} alt="Preview" className="w-20 h-20 object-cover rounded" />
+            </div>
+          )}
+        </div>
       </div>
       
       <div className="space-y-2">
@@ -210,26 +196,6 @@ const AdminProducts = () => {
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           required
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="benefits">Bienfaits (séparés par des virgules)</Label>
-        <Textarea
-          id="benefits"
-          value={formData.benefits}
-          onChange={(e) => setFormData({ ...formData, benefits: e.target.value })}
-          placeholder="Ex: Riche en fibres, Sans gluten, Source de protéines"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="nutritionalInfo">Informations nutritionnelles (séparées par des virgules)</Label>
-        <Textarea
-          id="nutritionalInfo"
-          value={formData.nutritionalInfo}
-          onChange={(e) => setFormData({ ...formData, nutritionalInfo: e.target.value })}
-          placeholder="Ex: 15g de protéines, 60g de glucides, 5g de lipides"
         />
       </div>
 
@@ -251,7 +217,7 @@ const AdminProducts = () => {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
               <Package className="h-6 w-6 text-primary" />
-              <h1 className="text-2xl font-bold text-foreground">Gestion des Produits Bio Salim</h1>
+              <h1 className="text-2xl font-bold text-foreground">Gestion des Produits BioSalim</h1>
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="outline" onClick={() => navigate('/admin/orders')}>
@@ -292,10 +258,10 @@ const AdminProducts = () => {
           {products.map((product) => (
             <Card key={product.id} className="overflow-hidden">
               <div className="aspect-square bg-muted">
-                {product.image ? (
+                {product.image_url ? (
                   <img 
-                    src={product.image} 
-                    alt={product.name}
+                    src={product.image_url} 
+                    alt={product.nom}
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -305,14 +271,14 @@ const AdminProducts = () => {
                 )}
               </div>
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg line-clamp-1">{product.name}</CardTitle>
+                <CardTitle className="text-lg line-clamp-1">{product.nom}</CardTitle>
                 <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-primary">{product.price} DH</span>
-                  <span className="text-sm text-muted-foreground">Stock: {product.stock}</span>
+                  <span className="text-2xl font-bold text-primary">{product.prix} DH</span>
+                  <span className="text-sm text-muted-foreground">Stock: {product.quantité}</span>
                 </div>
-                {product.category && (
+                {product.categorie && (
                   <span className="text-xs bg-secondary/20 text-secondary-foreground px-2 py-1 rounded-full">
-                    {product.category}
+                    {product.categorie}
                   </span>
                 )}
               </CardHeader>

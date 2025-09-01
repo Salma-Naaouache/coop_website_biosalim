@@ -95,7 +95,7 @@ const AdminOrders = () => {
                         <div key={index} className="flex justify-between items-center py-2 border-b last:border-b-0">
                           <span>{item.productName}</span>
                            <span className="text-muted-foreground">
-                             {item.quantity} × {item.price} DH = {item.quantity * item.price} DH
+                             {item.quantity} × {item.prix} DH = {item.quantity * item.prix} DH
                            </span>
                         </div>
                       ))}
